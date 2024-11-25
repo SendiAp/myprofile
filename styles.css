@@ -31,24 +31,6 @@ header p {
     animation-delay: 0.3s;
 }
 
-/* Gaya Untuk foto sampul */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-.cover-photo {
-    background-image: url('/src/sampul.jpg'); /* Ganti dengan jalur gambar Anda */
-    height: 300px; /* Tinggi foto sampul */
-    background-size: cover; /* Memastikan gambar menutupi seluruh area */
-    background-position: center; /* Memusatkan gambar */
-}
-
-.profile {
-    padding: 20px;
-    text-align: center;
-}
-
 /* Gaya untuk pop-up */
 body {
     font-family: Arial, sans-serif;
