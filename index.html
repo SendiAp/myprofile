@@ -118,6 +118,24 @@
 </script>
 
 <script>
+    document.getElementById('submitComment').addEventListener('click', function() {
+        const commentInput = document.getElementById('commentInput');
+        const commentText = commentInput.value.trim();
+        
+        if (commentText) {
+            const commentList = document.getElementById('commentList');
+            const newComment = document.createElement('div');
+            newComment.className = 'comment';
+            newComment.textContent = commentText;
+            commentList.appendChild(newComment);
+            commentInput.value = ''; // Clear the input
+        } else {
+            alert("Komentar tidak boleh kosong!");
+        }
+    });
+</script>
+    
+<script>
     document.addEventListener("DOMContentLoaded", function() {
         const likeButton = document.querySelector(".like-button");
         const unlikeButton = document.querySelector(".unlike-button");
