@@ -12,6 +12,18 @@ header {
     text-align: center;
 }
 
+header h1 {
+    animation: fadeIn 1s forwards; /* Animasi fadeIn untuk judul */
+    opacity: 0; /* Mulai dengan transparan */
+    animation-delay: 0.1s; /* Delay untuk judul */
+}
+
+header p {
+    animation: fadeIn 1s forwards; /* Animasi fadeIn untuk paragraf */
+    opacity: 0; /* Mulai dengan transparan */
+    animation-delay: 0.3s; /* Delay untuk paragraf */
+}
+
 .profile {
     max-width: 800px;
     margin: 20px auto;
@@ -19,6 +31,9 @@ header {
     background: #ffffff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Mulai dengan transparan */
+    animation: fadeIn 0.8s forwards; /* Menggunakan animasi fadeIn */
+    animation-delay: 0.4s; /* Delay untuk profil */
 }
 
 .profile-photo {
@@ -27,25 +42,13 @@ header {
     border-radius: 50%;
     display: block;
     margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan untuk gambar profil */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi untuk efek hover */
 }
 
-.contact {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background: #35424a;
-    color: #ffffff;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+.profile-photo:hover {
+    transform: scale(1.1); /* Membesarkan gambar saat hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Bayangan lebih dalam saat hover */
 }
 
 .education {
@@ -55,22 +58,25 @@ footer {
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Mulai dengan transparan */
+    animation: fadeIn 0.8s forwards; /* Menggunakan animasi fadeIn */
+    animation-delay: 0.6s; /* Delay untuk pendidikan */
 }
 
 .education h2 {
-    color: #4CAF50;
+    margin-top: 0; /* Menghilangkan margin atas untuk judul */
 }
 
-.education ul {
-    list-style-type: none; /* Menghilangkan bullet points */
-    padding: 0;
-}
-
-.education li {
-    margin: 10px 0;
-    padding: 10px;
-    border-left: 4px solid #4CAF50; /* Garis di sebelah kiri */
-    background: #f9f9f9; /* Warna latar belakang */
+.contact {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Mulai dengan transparan */
+    animation: fadeIn 0.8s forwards; /* Menggunakan animasi fadeIn */
+    animation-delay: 0.8s; /* Delay untuk kontak */
 }
 
 .music {
@@ -81,6 +87,9 @@ footer {
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center; /* Memusatkan teks */
+    opacity: 0; /* Mulai dengan transparan */
+    animation: fadeIn 0.8s forwards; /* Menggunakan animasi fadeIn */
+    animation-delay: 1s; /* Delay untuk musik */
 }
 
 .music h2 {
@@ -95,48 +104,6 @@ footer {
     padding: 10px; /* Memberikan padding di sekitar pemutar audio */
 }
 
-/* Animasi untuk elemen yang muncul */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-.header, .profile, .education, .contact, .music {
-    opacity: 0; /* Mulai dengan transparan */
-    animation: fadeIn 0.8s forwards; /* Menggunakan animasi fadeIn */
-}
-
-.header {
-    animation-delay: 0.2s; /* Delay untuk header */
-}
-
-.profile {
-    animation-delay: 0.4s; /* Delay untuk profil */
-}
-
-.education {
-    animation-delay: 0.6s; /* Delay untuk pendidikan */
-}
-
-.contact {
-    animation-delay: 0.8s; /* Delay untuk kontak */
-}
-
-.music {
-    animation-delay: 1s; /* Delay untuk musik */
-}
-
-.profile-photo {
-    transition: transform 0.3s ease; /* Transisi untuk efek hover */
-}
-
-.profile-photo:hover {
-    transform: scale(1.1); /* Membesarkan gambar saat hover */
-}
-
-animation: fadeIn 0.8s forwards !important;
+footer {
+    text-align: center;
+    padding
