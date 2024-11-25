@@ -72,3 +72,25 @@ footer {
     border-left: 4px solid #4CAF50; /* Garis di sebelah kiri */
     background: #f9f9f9; /* Warna latar belakang */
 }
+
+.music {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #e0f7fa; /* Warna latar belakang yang lembut */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Memusatkan teks */
+}
+
+.music h2 {
+    color: #00796b; /* Warna hijau yang lebih gelap untuk judul */
+}
+
+.music audio {
+    width: 100%; /* Membuat pemutar audio responsif */
+    margin-top: 10px; /* Memberikan jarak di atas pemutar audio */
+    border-radius: 4px; /* Membuat sudut pemutar audio sedikit melengkung */
+    background: #ffffff; /* Latar belakang putih untuk pemutar audio */
+    padding: 10px; /* Memberikan padding di sekitar pemutar audio */
+}
