@@ -138,3 +138,5 @@ footer {
 .profile-photo:hover {
     transform: scale(1.1); /* Membesarkan gambar saat hover */
 }
+
+animation: fadeIn 0.8s forwards !important;
