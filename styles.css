@@ -94,3 +94,39 @@ footer {
     background: #ffffff; /* Latar belakang putih untuk pemutar audio */
     padding: 10px; /* Memberikan padding di sekitar pemutar audio */
 }
+
+/* Animasi untuk elemen yang muncul */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+.header, .profile, .education, .contact, .music {
+    opacity: 0; /* Mulai dengan transparan */
+    animation: fadeIn 0.8s forwards; /* Menggunakan animasi fadeIn */
+}
+
+.header {
+    animation-delay: 0.2s; /* Delay untuk header */
+}
+
+.profile {
+    animation-delay: 0.4s; /* Delay untuk profil */
+}
+
+.education {
+    animation-delay: 0.6s; /* Delay untuk pendidikan */
+}
+
+.contact {
+    animation-delay: 0.8s; /* Delay untuk kontak */
+}
+
+.music {
+    animation-delay: 1s; /* Delay untuk musik */
+}
