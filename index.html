@@ -118,14 +118,20 @@
         const likeCountDisplay = document.getElementById("likeCount");
         const unlikeCountDisplay = document.getElementById("unlikeCount");
 
+        // Ambil jumlah like dan unlike dari localStorage
+        let likeCount = parseInt(localStorage.getItem("likeCount")) || 0;
+        let unlikeCount = parseInt(localStorage.getItem("unlikeCount")) || 0;
         let isLiked = false; // Status like
-        let likeCount = 0; // Jumlah like
-        let unlikeCount = 0; // Jumlah unlike
+
+        // Tampilkan jumlah like dan unlike
+        likeCountDisplay.textContent = likeCount;
+        unlikeCountDisplay.textContent = unlikeCount;
 
         likeButton.addEventListener("click", function() {
             if (!isLiked) {
                 isLiked = true;
                 likeCount++; // Tambah jumlah like
+                localStorage.setItem("likeCount", likeCount); // Simpan ke localStorage
                 likeCountDisplay.textContent = likeCount; // Update tampilan jumlah like
                 likeButton.style.display = "none"; // Sembunyikan tombol like
                 unlikeButton.style.display = "inline"; // Tampilkan tombol unlike
@@ -137,6 +143,7 @@
             if (isLiked) {
                 isLiked = false;
                 unlikeCount++; // Tambah jumlah unlike
+                localStorage.setItem("unlikeCount", unlikeCount); // Simpan ke localStorage
                 unlikeCountDisplay.textContent = unlikeCount; // Update tampilan jumlah unlike
                 unlikeButton.style.display = "none"; // Sembunyikan tombol unlike
                 likeButton.style.display = "inline"; // Tampilkan tombol like
