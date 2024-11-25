@@ -7,18 +7,30 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         /* Gaya untuk pop-up */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
         .popup {
             display: none; /* Sembunyikan pop-up secara default */
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: white;
-            border: 1px solid #ccc;
+            background-color: #fff;
+            border: 2px solid #007BFF;
+            border-radius: 10px;
             padding: 20px;
             z-index: 1000;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            width: 300px;
+            text-align: center;
         }
+
         .overlay {
             display: none; /* Sembunyikan overlay secara default */
             position: fixed;
@@ -26,8 +38,27 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.7);
             z-index: 999;
+        }
+
+        .popup h2 {
+            margin: 0 0 15px;
+            color: #007BFF;
+        }
+
+        .popup button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -87,10 +118,4 @@
         document.getElementById('overlay').style.display = 'none';
         document.getElementById('popup').style.display = 'none';
     });
-</script>
-
-<footer>
-    <p>Hak Cipta © 2023 Sendi Adiningtias Priyanto</p>
-</footer>
-</body>
-</html>
+</script
