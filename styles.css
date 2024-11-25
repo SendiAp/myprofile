@@ -43,23 +43,34 @@ header p {
     }
 }
 
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
 .comments {
     background: #ffffff; /* Latar belakang putih untuk bagian komentar */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
 }
 
 .comment {
-    background: #f8f9fa; /* Latar belakang abu-abu muda untuk komentar */
+    background: #e9ecef; /* Latar belakang abu-abu muda untuk komentar */
     padding: 15px;
     border-radius: 8px;
     margin: 10px 0;
     font-size: 14px;
     position: relative;
     animation: fadeIn 0.5s ease; /* Menambahkan animasi fadeIn */
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); /* Bayangan halus */
+    transition: transform 0.2s; /* Transisi saat hover */
+}
+
+.comment:hover {
+    transform: scale(1.02); /* Efek zoom saat hover */
 }
 
 .comment::before {
@@ -80,6 +91,32 @@ header p {
     margin: 0;
     color: #333; /* Warna teks komentar */
     line-height: 1.5; /* Jarak antar baris yang lebih baik */
+}
+
+/* Gaya untuk textarea dan button */
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    resize: none;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s; /* Transisi saat hover */
+}
+
+button:hover {
+    background-color: #218838;
 }
 
 /* Like Unlike */
