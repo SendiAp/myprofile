@@ -130,3 +130,11 @@ footer {
 .music {
     animation-delay: 1s; /* Delay untuk musik */
 }
+
+.profile-photo {
+    transition: transform 0.3s ease; /* Transisi untuk efek hover */
+}
+
+.profile-photo:hover {
+    transform: scale(1.1); /* Membesarkan gambar saat hover */
+}
