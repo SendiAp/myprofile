@@ -18,12 +18,6 @@ header h1 {
     animation-delay: 0.1s; /* Delay untuk judul */
 }
 
-header p {
-    animation: fadeIn 1s forwards; /* Animasi fadeIn untuk paragraf */
-    opacity: 0; /* Mulai dengan transparan */
-    animation-delay: 0.3s; /* Delay untuk paragraf */
-}
-
 .profile {
     max-width: 800px;
     margin: 20px auto;
@@ -63,47 +57,6 @@ header p {
     animation-delay: 0.6s; /* Delay untuk pendidikan */
 }
 
-.education h2 {
-    margin-top: 0; /* Menghilangkan margin atas untuk judul */
-}
-
 .contact {
     max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    opacity: 0; /* Mulai dengan transparan */
-    animation: fadeIn 0.8s forwards; /* Menggunakan animasi fadeIn */
-    animation-delay: 0.8s; /* Delay untuk kontak */
-}
-
-.music {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #e0f7fa; /* Warna latar belakang yang lembut */
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Memusatkan teks */
-    opacity: 0; /* Mulai dengan transparan */
-    animation: fadeIn 0.8s forwards; /* Menggunakan animasi fadeIn */
-    animation-delay: 1s; /* Delay untuk musik */
-}
-
-.music h2 {
-    color: #00796b; /* Warna hijau yang lebih gelap untuk judul */
-}
-
-.music audio {
-    width: 100%; /* Membuat pemutar audio responsif */
-    margin-top: 10px; /* Memberikan jarak di atas pemutar audio */
-    border-radius: 4px; /* Membuat sudut pemutar audio sedikit melengkung */
-    background: #ffffff; /* Latar belakang putih untuk pemutar audio */
-    padding: 10px; /* Memberikan padding di sekitar pemutar audio */
-}
-
-footer {
-    text-align: center;
-    padding
+    margin: 20px auto
