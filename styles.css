@@ -31,6 +31,30 @@ header p {
     animation-delay: 0.3s;
 }
 
+/* Like Unlike */
+.social-actions {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.like-button, .unlike-button, .gift-button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.like-button:hover, .unlike-button:hover, .gift-button:hover {
+    background-color: #3e8e41;
+}
+
+.like-button:active, .unlike-button:active, .gift-button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
 /* Gaya untuk pop-up */
 body {
     font-family: Arial, sans-serif;
