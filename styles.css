@@ -38,7 +38,7 @@ body {
 }
 
 .cover-photo {
-    background-image: url('cover-photo.jpg'); /* Ganti dengan jalur gambar Anda */
+    background-image: url('/src/sampul.jpg'); /* Ganti dengan jalur gambar Anda */
     height: 300px; /* Tinggi foto sampul */
     background-size: cover; /* Memastikan gambar menutupi seluruh area */
     background-position: center; /* Memusatkan gambar */
