@@ -119,20 +119,6 @@
 </script>
 
 <script>
-    // Fungsi untuk memuat komentar dari localStorage
-    function loadComments() {
-        const comments = JSON.parse(localStorage.getItem('comments')) || [];
-        const commentList = document.getElementById('commentList');
-        commentList.innerHTML = ''; // Kosongkan daftar komentar sebelum memuat
-        comments.forEach(comment => {
-            const newComment = document.createElement('div');
-            newComment.className = 'comment';
-            newComment.innerHTML = `<span class="comment-header">${comment.name}:</span> ${comment.text}`;
-            commentList.appendChild(newComment);
-        });
-    }
-
-    // Panggil fungsi untuk memuat komentar saat halaman dimuat
 // Fungsi untuk memuat komentar dari localStorage
 function loadComments() {
     const comments = JSON.parse(localStorage.getItem('comments')) || [];
