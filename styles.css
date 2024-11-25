@@ -123,6 +123,11 @@ body {
     border-radius: 3px 0 0 3px;
 }
 
+.gallery h2 {
+    text-align: center; /* Memusatkan teks */
+    margin: 20px 0; /* Menambahkan margin atas dan bawah */
+}
+
 .prev:hover, .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
