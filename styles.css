@@ -166,33 +166,6 @@ header p {
     animation-delay: 0.8s;
 }
 
-/* Gaya untuk bagian musik */
-.music {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #e0f7fa;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    opacity: 0;
-    animation: fadeIn 0.8s forwards;
-    animation-delay: 1s;
-}
-
-.music h2 {
-    color: #00796b;
-}
-
-/* Gaya untuk pemutar audio */
-.music audio {
-    width: 100%;
-    margin-top: 10px;
-    border-radius: 4px;
-    background: #ffffff;
-    padding: 10px;
-}
-
 /* Gaya untuk footer */
 footer {
     text-align: center;
