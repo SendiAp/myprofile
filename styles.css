@@ -72,6 +72,13 @@ header p {
     animation-delay: 0.6s;
 }
 
+.education {
+    background-color: #ADD8E6; /* Ganti dengan warna yang diinginkan */
+    padding: 20px; /* Menambahkan padding untuk ruang di dalam */
+    border-radius: 5px; /* Menambahkan sudut yang membulat */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan */
+}
+
 .education h2 {
     margin-top: 0;
 }
