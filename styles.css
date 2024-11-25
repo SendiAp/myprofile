@@ -44,6 +44,15 @@ header p {
     animation-delay: 0.4s;
 }
 
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Memusatkan secara horizontal */
+    justify-content: center; /* Memusatkan secara vertikal */
+    text-align: center; /* Memusatkan teks */
+    margin: 20px 0; /* Margin atas dan bawah */
+}
+
 .profile-photo {
     width: 150px;
     height: 150px;
