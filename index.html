@@ -115,12 +115,18 @@
         const likeButton = document.querySelector(".like-button");
         const unlikeButton = document.querySelector(".unlike-button");
         const giftButton = document.querySelector(".gift-button");
+        const likeCountDisplay = document.getElementById("likeCount");
+        const unlikeCountDisplay = document.getElementById("unlikeCount");
 
         let isLiked = false; // Status like
+        let likeCount = 0; // Jumlah like
+        let unlikeCount = 0; // Jumlah unlike
 
         likeButton.addEventListener("click", function() {
             if (!isLiked) {
                 isLiked = true;
+                likeCount++; // Tambah jumlah like
+                likeCountDisplay.textContent = likeCount; // Update tampilan jumlah like
                 likeButton.style.display = "none"; // Sembunyikan tombol like
                 unlikeButton.style.display = "inline"; // Tampilkan tombol unlike
                 console.log("Liked!");
@@ -130,6 +136,8 @@
         unlikeButton.addEventListener("click", function() {
             if (isLiked) {
                 isLiked = false;
+                unlikeCount++; // Tambah jumlah unlike
+                unlikeCountDisplay.textContent = unlikeCount; // Update tampilan jumlah unlike
                 unlikeButton.style.display = "none"; // Sembunyikan tombol unlike
                 likeButton.style.display = "inline"; // Tampilkan tombol like
                 console.log("Unliked!");
@@ -142,3 +150,6 @@
         });
     });
 </script>
+
+</body>
+</html>
