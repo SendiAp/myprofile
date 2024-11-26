@@ -115,7 +115,12 @@
             const inputField = document.querySelector('.chat-input input');
             const userMessage = inputField.value;
             if (userMessage.trim() !== "") {
-                socket.emit('sendMessage', userMessage);
+                const messageData = {
+                    user: 'Mas Sendi', // Ganti dengan nama pengguna yang sesuai
+                    text: userMessage,
+                    profilePic: 'https://via.placeholder.com/40' // Ganti dengan URL foto profil yang sesuai
+                };
+                socket.emit('sendMessage', messageData);
                 inputField.value = ''; // Kosongkan input setelah mengirim
             }
         }
@@ -124,7 +129,11 @@
             const messages = document.querySelector('.chat-messages');
             const messageElement = document.createElement('div');
             messageElement.classList.add('message');
-            messageElement.innerHTML = `<div class="message-content">${message}</div>`;
+            messageElement.innerHTML = `
+                <img src="${message.profilePic}" alt="Profile Picture">
+                <div class="message-content">
+                    <strong>${message.user}:</strong> ${message.text}
+                </div>`;
             messages.appendChild(messageElement);
             messages.scrollTop = messages.scrollHeight; // Scroll ke bawah saat pesan baru diterima
         }
