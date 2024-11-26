@@ -1,71 +1,218 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anonymous Chat</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
-    <style>
-        .chat {
-            list-style-type: none;
-            padding: 0;
-            height: 300px;
-            overflow-y: scroll;
-        }
-        .chat li {
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
-        }
-    </style>
+    <title>MyProfile</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="row form-group">
-            <div class="col-xs-12">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">Anonymous Chat</div>
-                    <div class="panel-body">
-                        <ul class="chat"></ul>
-                    </div>
-                    <div class="panel-footer">
-                        <textarea id="message" class="form-control" rows="3"></textarea>
-                        <button class="btn btn-warning btn-lg btn-block" id="btn-chat">Send</button>
-                    </div>
-                </div>
-            </div>
+<section class="profile">
+    <img src="src/sendi.jpg" alt="Foto Profil" class="profile-photo">
+    <h2>Mas Sendi <img src="src/h2.png" alt="Centang Biru" style="width: 30px; vertical-align: middle;"></h2> <!-- Menambahkan gambar centang biru -->
+    <p>Saya orang yang pekerja keras dan jujur. Saya pandai mengatur waktu, selalu ingin belajar keterampilan baru. Saya ramah, suka menolong, dan sopan, memiliki selera humor yang baik. Saya mampu bekerja secara mandiri di lingkungan yang sibuk dan juga dalam lingkungan tim.</p>
+
+    <div class="social-actions">
+        <button class="like-button">👍 <span id="likeCount">0</span></button>
+        <button class="unlike-button" style="display: none;">👎 <span id="unlikeCount">0</span></button>
+        <button class="gift-button">🎁</button>
+    </div>
+</section>
+
+<section class="comments">
+    <h3>Komentar</h3>
+    <input type="text" id="nameInput" placeholder="Nama Anda" />
+    <textarea id="commentInput" placeholder="Tulis komentar..."></textarea>
+    <button id="submitComment">Kirim</button>
+    <div id="commentList"></div>
+</section>
+    
+<div class="education">
+    <h2>Pendidikan</h2>
+    <div class="education-content">
+        <img src="src/smk.jpeg" alt="Gambar Pendidikan" class="education-photo">
+        <div class="education-text">
+            <p>Pendidikan Terakhir Saya di SMK CIBITUNG 1, Jurusan saya adalah TEKNIK MEKANIK INDUSTRI, Dan saya pernah PKL Disebuah PT SHOW LASER.</p>
         </div>
     </div>
+</div>
 
-    <script>
-        // Ganti dengan kunci Pusher Anda
-        const pusherKey = '7b6ed4a7570a61dd2640';
-        const pusherCluster = 'sa1';
+<section class="gallery">
+    <h2>Galeri</h2>
+    <div class="slideshow-container">
 
-        $(document).ready(function() {
-            var pusher = new Pusher(pusherKey, {
-                cluster: pusherCluster,
-                encrypted: true
-            });
+        <div class="mySlides">
+            <img src="src/A10.jpg" alt="Gambar 1">
+        </div>
 
-            let channel = pusher.subscribe('public-chat');
-            channel.bind('message-added', onMessageAdded);
+        <div class="mySlides">
+            <img src="src/A15.jpg" alt="Gambar 2">
+        </div>
 
-            $('#btn-chat').click(function() {
-                const message = $("#message").val();
-                $("#message").val("");
+        <div class="mySlides">
+            <img src="src/A20.jpg" alt="Gambar 3">
+        </div>
 
-                // Kirim pesan ke server
-                $.post("http://localhost:5000/message", { message });
-            });
+        <div class="mySlides">
+            <img src="src/A25.jpg" alt="Gambar 4">
+        </div>
 
-            function onMessageAdded(data) {
-                let chat = $('.chat');
-                chat.append(`<li>${data.message}</li>`);
-                chat.scrollTop(chat[0].scrollHeight);
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+</section>
+
+<section class="contact">
+    <h2>Kontak</h2>
+    <p>Email: <a href="mailto:emailanda@example.com">emailanda@example.com</a></p>
+    <p>Telepon: 123-456-7890</p>
+</section>
+
+<audio id="background-music" loop>
+    <source src="music.mp3" type="audio/mpeg"> <!-- Ganti dengan jalur yang benar -->
+    Browser Anda tidak mendukung tag audio.
+</audio>
+
+<div class="overlay" id="overlay"></div>
+<div class="popup" id="popup">
+    <h2>Kontrol Musik</h2>
+    <button id="play-button">Putar Musik</button>
+    <button id="close-popup">Tutup</button>
+</div>
+
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slides[slideIndex - 1].style.display = "block";  
+    }
+</script>
+    
+<script>
+    // Tampilkan pop-up saat halaman dimuat
+    window.onload = function() {
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('popup').style.display = 'block';
+    };
+
+    document.getElementById('play-button').addEventListener('click', function() {
+        var audio = document.getElementById('background-music');
+        audio.play();
+    });
+
+    document.getElementById('close-popup').addEventListener('click', function() {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('popup').style.display = 'none';
+    });
+</script>
+
+<script>
+// Fungsi untuk memuat komentar dari localStorage
+function loadComments() {
+    const comments = JSON.parse(localStorage.getItem('comments')) || [];
+    const commentList = document.getElementById('commentList');
+    commentList.innerHTML = ''; // Kosongkan daftar komentar sebelum memuat
+    comments.forEach(comment => {
+        const newComment = document.createElement('div');
+        newComment.className = 'comment';
+        newComment.innerHTML = `<strong>${comment.name}:</strong> ${comment.text}`;
+        commentList.appendChild(newComment);
+    });
+}
+
+// Panggil fungsi untuk memuat komentar saat halaman dimuat
+window.onload = loadComments;
+
+document.getElementById('submitComment').addEventListener('click', function() {
+    const nameInput = document.getElementById('nameInput');
+    const commentInput = document.getElementById('commentInput');
+    const nameText = nameInput.value.trim();
+    const commentText = commentInput.value.trim();
+    
+    if (nameText && commentText) {
+        // Ambil komentar yang ada dari localStorage
+        const comments = JSON.parse(localStorage.getItem('comments')) || [];
+        // Tambahkan komentar baru ke array
+        comments.push({ name: nameText, text: commentText });
+        // Simpan kembali ke localStorage
+        localStorage.setItem('comments', JSON.stringify(comments));
+        
+        // Tambahkan komentar baru ke tampilan
+        const commentList = document.getElementById('commentList');
+        const newComment = document.createElement('div');
+        newComment.className = 'comment';
+        newComment.innerHTML = `<strong>${nameText}:</strong> ${commentText}`;
+        commentList.appendChild(newComment);
+        
+        // Bersihkan input
+        nameInput.value = ''; 
+        commentInput.value = ''; 
+    } else {
+        alert("Nama dan komentar tidak boleh kosong!");
+    }
+});
+
+</script>
+    
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const likeButton = document.querySelector(".like-button");
+        const unlikeButton = document.querySelector(".unlike-button");
+        const giftButton = document.querySelector(".gift-button");
+        const likeCountDisplay = document.getElementById("likeCount");
+        const unlikeCountDisplay = document.getElementById("unlikeCount");
+
+        // Ambil jumlah like dan unlike dari localStorage
+        let likeCount = parseInt(localStorage.getItem("likeCount")) || 0;
+        let unlikeCount = parseInt(localStorage.getItem("unlikeCount")) || 0;
+        let isLiked = false; // Status like
+
+        // Tampilkan jumlah like dan unlike
+        likeCountDisplay.textContent = likeCount;
+        unlikeCountDisplay.textContent = unlikeCount;
+
+        likeButton.addEventListener("click", function() {
+            if (!isLiked) {
+                isLiked = true;
+                likeCount++; // Tambah jumlah like
+                localStorage.setItem("likeCount", likeCount); // Simpan ke localStorage
+                likeCountDisplay.textContent = likeCount; // Update tampilan jumlah like
+                likeButton.style.display = "none"; // Sembunyikan tombol like
+                unlikeButton.style.display = "inline"; // Tampilkan tombol unlike
+                console.log("Liked!");
             }
         });
-    </script>
+
+        unlikeButton.addEventListener("click", function() {
+            if (isLiked) {
+                isLiked = false;
+                unlikeCount++; // Tambah jumlah unlike
+                localStorage.setItem("unlikeCount", unlikeCount); // Simpan ke localStorage
+                unlikeCountDisplay.textContent = unlikeCount; // Update tampilan jumlah unlike
+                unlikeButton.style.display = "none"; // Sembunyikan tombol unlike
+                likeButton.style.display = "inline"; // Tampilkan tombol like
+                console.log("Unliked!");
+            }
+        });
+
+        giftButton.addEventListener("click", function() {
+            // Fungsi untuk gift
+            console.log("Gift button clicked!");
+        });
+    });
+</script>
+
 </body>
-</html>
+    </html>
