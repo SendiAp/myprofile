@@ -125,3 +125,65 @@ body {
         font-size: 14px;
     }
     }
+
+/* Posts Section */
+.posts-section {
+    margin-top: 20px;
+}
+
+.posts-menu {
+    text-align: left;
+}
+
+.posts-menu h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.posts-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.posts-menu li {
+    margin: 5px 0;
+}
+
+.posts-menu a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.posts-menu a:hover {
+    text-decoration: underline;
+}
+
+.posts-photo {
+    margin-top: 15px;
+}
+
+.posts-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+    }
+
+    .name {
+        font-size: 20px;
+    }
+
+    .education, .location, .contact, .description {
+        font-size: 14px;
+    }
+
+    .posts-menu h2 {
+        font-size: 18px;
+    }
+        }
