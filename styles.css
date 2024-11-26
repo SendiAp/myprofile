@@ -213,3 +213,40 @@ body {
     max-width: 100%;
     height: auto;
 }
+
+footer {
+    background-color: #343a40; /* Warna latar belakang gelap */
+    color: white; /* Warna teks putih */
+    padding: 20px 0; /* Padding atas dan bawah */
+    text-align: center; /* Teks rata tengah */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 800px; /* Lebar maksimum konten */
+    margin: auto; /* Pusatkan konten */
+    padding: 0 20px; /* Padding horizontal */
+}
+
+footer p {
+    margin: 5px 0; /* Jarak antar paragraf */
+}
+
+.social-media {
+    margin-top: 10px; /* Jarak atas untuk ikon sosial media */
+}
+
+.social-media a {
+    color: white; /* Warna ikon */
+    margin: 0 15px; /* Jarak antar ikon */
+    text-decoration: none; /* Menghilangkan garis bawah */
+    font-size: 1.5em; /* Ukuran font untuk ikon */
+    transition: color 0.3s; /* Transisi warna saat hover */
+}
+
+.social-media a:hover {
+    color: #FFD700; /* Warna saat hover */
+    transform: scale(1.2); /* Efek pembesaran saat hover */
+}
