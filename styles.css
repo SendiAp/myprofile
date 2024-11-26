@@ -82,3 +82,13 @@ body {
     font-size: 14px;
     margin-top: 5px;
 }
+
+.name {
+    display: inline-flex;
+    align-items: center;
+}
+
+.name i {
+    margin-left: 5px; /* Space between name and checkmark */
+    font-size: 20px; /* Adjust size of the checkmark */
+}
