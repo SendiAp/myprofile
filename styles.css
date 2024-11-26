@@ -31,6 +31,25 @@ header p {
     animation-delay: 0.3s;
 }
 
+.profile-container {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.cover-photo {
+    height: 100px;
+    background-image: url('cover-photo.jpg');
+    background-size: cover;
+}
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin-top: -40px; /* Adjust to overlap with cover photo */
+}
+
 /* Gaya untuk komentar */
 @keyframes fadeIn {
     from {
