@@ -166,13 +166,19 @@ footer p {
 }
 
 /* CSS untuk tombol */
+.button {
+    flex-grow: 1; /* Membuat tombol mengisi ruang yang tersedia */
+    padding: 30px 0; /* Mengatur padding vertikal */
+    text-align: center; /* Memusatkan teks dalam tombol */
+}
+
 .button-container {
     display: flex; /* Menggunakan Flexbox untuk menata tombol */
     gap: 10px; /* Jarak antara tombol */
 }
 
 .button {
-    padding: 30px 30px;
+    padding: 10px 15px;
     background-color: #007bff; /* Warna latar belakang tombol */
     color: white; /* Warna teks */
     border: none; /* Menghilangkan border default */
