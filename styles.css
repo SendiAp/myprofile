@@ -187,3 +187,19 @@ body {
         font-size: 18px;
     }
         }
+
+.menu {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu-item {
+    text-decoration: none;
+    color: #007bff; /* Warna biru */
+    font-weight: bold;
+}
+
+.menu-item:hover {
+    text-decoration: underline;
+}
