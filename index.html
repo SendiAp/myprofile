@@ -28,3 +28,76 @@
                 <a href="#pengikut" class="menu-item">Pengikut</a>
             </div>
             <hr class="menu-divider">
+
+<!-- Postingan Section -->
+                <div id="postingan" class="postingan">
+                    <h2>Postingan Terbaru</h2>
+                    <form id="post-form">
+                        <textarea id="post-text" placeholder="Tulis sesuatu..." required></textarea>
+                        <input type="file" id="post-image" accept="image/*">
+                        <button type="submit">Kirim</button>
+                    </form>
+                    <div id="posts-container"></div>
+                </div>
+
+                <!-- Galeri Section -->
+                <div id="galeri" class="galeri">
+                    <h2>Galeri Foto</h2>
+                    <div class="photo-grid">
+                        <img src="src/photo1.jpg" alt="Foto 1" class="gallery-photo">
+                        <img src="src/photo2.jpg" alt="Foto 2" class="gallery-photo">
+                        <img src="src/photo3.jpg" alt="Foto 3" class="gallery-photo">
+                        <img src="src/photo4.jpg" alt="Foto 4" class="gallery-photo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Mas Sendi. Semua hak dilindungi.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const postForm = document.getElementById('post-form');
+            const postText = document.getElementById('post-text');
+            const postImage = document.getElementById('post-image');
+            const postsContainer = document.getElementById('posts-container');
+
+            postForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Mencegah reload halaman
+
+                // Membuat elemen baru untuk postingan
+                const postDiv = document.createElement('div');
+                postDiv.classList.add('post');
+
+                // Menambahkan teks postingan
+                const textParagraph = document.createElement('p');
+                textParagraph.textContent = postText.value;
+                postDiv.appendChild(textParagraph);
+
+                // Menambahkan gambar jika ada
+                if (postImage.files.length > 0) {
+                    const image = document.createElement('img');
+                    image.src = URL.createObjectURL(postImage.files[0]);
+                    postDiv.appendChild(image);
+                }
+
+                // Menambahkan tanggal postingan
+                const dateParagraph = document.createElement('span');
+                dateParagraph.classList.add('post-date');
+                dateParagraph.textContent = `Tanggal: ${new Date().toLocaleDateString()}`;
+                postDiv.appendChild(dateParagraph);
+
+                // Menambahkan postingan baru ke dalam container
+                postsContainer.prepend(postDiv);
+
+                // Mengosongkan form setelah posting
+                postText.value = '';
+                postImage.value = '';
+            });
+        });
+    </script>
+</body>
+</html>
