@@ -31,25 +31,6 @@ header p {
     animation-delay: 0.3s;
 }
 
-.profile-container {
-    width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    overflow: hidden;
-}
-.cover-photo {
-    height: 100px;
-    background-image: url('cover-photo.jpg');
-    background-size: cover;
-}
-.profile-pic {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 2px solid white;
-    margin-top: -40px; /* Adjust to overlap with cover photo */
-}
-
 /* Gaya untuk komentar */
 @keyframes fadeIn {
     from {
@@ -264,40 +245,55 @@ body {
 }
 
 /* Gaya untuk bagian profil */
-.profile {
-    max-width: 800px;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5; /* Warna latar belakang yang mirip dengan Facebook */
+}
+
+.profile-container {
+    width: 300px;
     margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.cover-photo {
+    height: 100px;
+    background-image: url('cover-photo.jpg'); /* Ganti dengan URL gambar sampul */
+    background-size: cover;
+    background-position: center;
+}
+
+.profile-info {
+    text-align: center;
     padding: 20px;
-    background: #f0f8ff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    animation: fadeIn 0.8s forwards;
-    animation-delay: 0.4s;
+    background-color: white;
 }
 
-.profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Memusatkan secara horizontal */
-    justify-content: center; /* Memusatkan secara vertikal */
-    text-align: center; /* Memusatkan teks */
-    margin: 20px 0; /* Margin atas dan bawah */
-}
-
-.profile-photo {
-    width: 150px;
-    height: 150px;
+.profile-pic {
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    display: block;
-    margin: 0 auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid white; /* Border putih di sekitar foto profil */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: -40px; /* Mengangkat foto profil ke atas */
 }
 
-.profile-photo:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+.name {
+    font-size: 24px;
+    margin: 10px 0 5px;
+}
+
+.followers {
+    color: #606770; /* Warna abu-abu untuk informasi pengikut */
+    margin: 5px 0;
+}
+
+.description {
+    color: #606770; /* Warna abu-abu untuk deskripsi */
+    font-size: 14px;
+    margin-top: 5px;
 }
 
 /* Gaya untuk bagian pendidikan */
