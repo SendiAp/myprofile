@@ -1,97 +1,70 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Anonim</title>
-    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+    <title>Anonymous Chat</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; }
-        #chat { margin-top: 20px; }
-        #messages { border: 1px solid #ccc; height: 300px; overflow-y: scroll; padding: 10px; }
-        #messageInput { width: 80%; }
+        .chat {
+            list-style-type: none;
+            padding: 0;
+            height: 300px;
+            overflow-y: scroll;
+        }
+        .chat li {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
     </style>
 </head>
 <body>
-    <h1>Chat Anonim</h1>
-    <div id="firebaseui-auth-container"></div>
-    <div id="loader">Loading...</div>
-
-    <div id="chat" style="display:none;">
-        <div id="messages"></div>
-        <input type="text" id="messageInput" placeholder="Ketik pesan...">
-        <button id="sendButton">Kirim</button>
+    <div class="container">
+        <div class="row form-group">
+            <div class="col-xs-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Anonymous Chat</div>
+                    <div class="panel-body">
+                        <ul class="chat"></ul>
+                    </div>
+                    <div class="panel-footer">
+                        <textarea id="message" class="form-control" rows="3"></textarea>
+                        <button class="btn btn-warning btn-lg btn-block" id="btn-chat">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Konfigurasi Firebase Anda
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
+        // Ganti dengan kunci Pusher Anda
+        const pusherKey = '7b6ed4a7570a61dd2640';
+        const pusherCluster = 'sa1';
 
-        // Inisialisasi Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const firestore = firebase.firestore();
-
-        // Inisialisasi FirebaseUI
-        const ui = new firebaseui.auth.AuthUI(auth);
-        const uiConfig = {
-            signInSuccessUrl: window.location.href,
-            signInOptions: [
-                firebase.auth.EmailAuthProvider.PROVIDER_ID,
-                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-            ],
-            callbacks: {
-                signInSuccessWithAuthResult: function(authResult) {
-                    document.getElementById('loader').style.display = 'none';
-                    document.getElementById('chat').style.display = 'block';
-                    return false; // Mencegah redirect
-                },
-                uiShown: function() {
-                    document.getElementById('loader').style.display = 'none';
-                }
-            }
-        };
-
-        ui.start('#firebaseui-auth-container', uiConfig);
-
-        // Mengirim pesan
-        document.getElementById('sendButton').addEventListener('click', async () => {
-            const messageInput = document.getElementById('messageInput');
-            const message = messageInput.value;
-            const user = auth.currentUser ;
-
-            if (message && user) {
-                await firestore.collection('messages').add({
-                    text: message,
-                    uid: user.uid,
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                messageInput.value = '';
-            }
-        });
-
-        // Mendengarkan pesan baru
-        firestore.collection('messages').orderBy('timestamp').onSnapshot(snapshot => {
-            const messages = document.getElementById('messages');
-            messages.innerHTML = '';
-            snapshot.forEach(doc => {
-                const msg = doc.data();
-                const messageElement = document.createElement('div');
-                messageElement.textContent = msg.text;
-                messages.appendChild(messageElement);
+        $(document).ready(function() {
+            var pusher = new Pusher(pusherKey, {
+                cluster: pusherCluster,
+                encrypted: true
             });
-            messages.scrollTop = messages.scrollHeight; // Scroll ke bawah
+
+            let channel = pusher.subscribe('public-chat');
+            channel.bind('message-added', onMessageAdded);
+
+            $('#btn-chat').click(function() {
+                const message = $("#message").val();
+                $("#message").val("");
+
+                // Kirim pesan ke server
+                $.post("http://localhost:5000/message", { message });
+            });
+
+            function onMessageAdded(data) {
+                let chat = $('.chat');
+                chat.append(`<li>${data.message}</li>`);
+                chat.scrollTop(chat[0].scrollHeight);
+            }
         });
     </script>
 </body>
