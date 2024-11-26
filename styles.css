@@ -166,17 +166,20 @@ footer p {
 }
 
 /* CSS untuk tombol */
+.button-container {
+    display: flex; /* Menggunakan Flexbox untuk menata tombol */
+    gap: 10px; /* Jarak antara tombol */
+}
+
 .button {
-    background-color: #007bff; /* Warna latar belakang */
+    padding: 10px 15px;
+    background-color: #007bff; /* Warna latar belakang tombol */
     color: white; /* Warna teks */
-    border: none; /* Tanpa border */
+    border: none; /* Menghilangkan border default */
     border-radius: 5px; /* Sudut membulat */
-    padding: 10px 15px; /* Ruang dalam tombol */
-    font-size: 16px; /* Ukuran font */
-    cursor: pointer; /* Kursor tangan saat hover */
-    display: flex; /* Menggunakan flexbox untuk menata */
-    align-items: center; /* Menyelaraskan item secara vertikal */
-    margin: 5px; /* Jarak antar tombol */
+    cursor: pointer; /* Mengubah kursor saat hover */
+    display: flex; /* Menggunakan Flexbox untuk menata ikon dan teks */
+    align-items: center; /* Vertikal center */
 }
 
 .button i {
