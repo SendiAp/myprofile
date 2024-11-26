@@ -189,17 +189,36 @@ body {
         }
 
 .menu {
-    margin-top: 20px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center; /* Menyusun menu di tengah */
+    margin: 20px 0; /* Jarak vertikal dari elemen di atas dan bawah */
 }
 
 .menu-item {
-    text-decoration: none;
-    color: #007bff; /* Warna biru */
-    font-weight: bold;
+    margin: 0 15px; /* Jarak horizontal antar item menu */
+    padding: 10px 15px; /* Ruang dalam untuk item menu */
+    text-decoration: none; /* Menghilangkan garis bawah dari tautan */
+    color: #333; /* Warna teks */
+    position: relative; /* Posisi relatif untuk garis */
 }
 
 .menu-item:hover {
-    text-decoration: underline;
+    color: #007BFF; /* Mengubah warna saat hover */
+}
+
+.menu-item::after {
+    content: '';
+    display: block;
+    height: 2px; /* Tinggi garis */
+    background: #007BFF; /* Warna garis */
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -5px; /* Jarak garis dari teks */
+    transform: scaleX(0); /* Mengatur garis agar tidak terlihat */
+    transition: transform 0.3s ease; /* Transisi saat hover */
+}
+
+.menu-item:hover::after {
+    transform: scaleX(1); /* Menampilkan garis saat hover */
 }
