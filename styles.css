@@ -167,20 +167,22 @@ footer p {
 
 /* CSS untuk tombol */
 .button {
-    background-color: #007bff; /* Warna biru */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 5px 2px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    background-color: #007bff; /* Warna latar belakang */
+    color: white; /* Warna teks */
+    border: none; /* Tanpa border */
+    border-radius: 5px; /* Sudut membulat */
+    padding: 10px 15px; /* Ruang dalam tombol */
+    font-size: 16px; /* Ukuran font */
+    cursor: pointer; /* Kursor tangan saat hover */
+    display: flex; /* Menggunakan flexbox untuk menata */
+    align-items: center; /* Menyelaraskan item secara vertikal */
+    margin: 5px; /* Jarak antar tombol */
+}
+
+.button i {
+    margin-right: 5px; /* Jarak antara ikon dan teks */
 }
 
 .button:hover {
-    background-color: #0056b3; /* Warna biru lebih gelap saat hover */
+    background-color: #0056b3; /* Warna latar belakang saat hover */
 }
