@@ -5,86 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruang Chat</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .chat-container {
-            width: 100%;
-            max-width: 400px;
-            margin: 50px auto;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .chat-header {
-            background: #007bff;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-        }
-
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-            max-height: 300px; /* Batasi tinggi area pesan */
-        }
-
-        .message {
-            display: flex;
-            margin-bottom: 10px;
-        }
-
-        .message img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .message-content {
-            background: #e9e9e9;
-            border-radius: 5px;
-            padding: 10px;
-            max-width: 70%;
-        }
-
-        .chat-input {
-            display: flex;
-            padding: 10px;
-        }
-
-        .chat-input input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .chat-input button {
-            padding: 10px;
-            margin-left: 5px;
-            border: none;
-            border-radius: 5px;
-            background: #007bff;
-            color: white;
-            cursor: pointer;
-        }
-
-        .chat-input button:hover {
-            background: #0056b3;
-        }
+        /* Identik dengan CSS di atas */
     </style>
 </head>
 <body>
@@ -97,18 +18,26 @@
         </div>
     </div>
 
-    <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket = io();
+        const messages = document.querySelector('.chat-messages');
+        const socket = new WebSocket('ws://localhost:8080');
 
-        socket.on('previousMessages', (messages) => {
-            messages.forEach(message => {
-                displayMessage(message);
-            });
+        socket.addEventListener('open', (event) => {
+            console.log('Koneksi WebSocket terbuka:', event);
+            socket.send(JSON.stringify({
+                type: 'getPreviousMessages'
+            }));
         });
 
-        socket.on('newMessage', (message) => {
-            displayMessage(message);
+        socket.addEventListener('message', (event) => {
+            const data = JSON.parse(event.data);
+            if (data.type === 'previousMessages') {
+                data.messages.forEach(message => {
+                    displayMessage(message);
+                });
+            } else if (data.type === 'newMessage') {
+                displayMessage(data.message);
+            }
         });
 
         function sendMessage() {
@@ -116,11 +45,14 @@
             const userMessage = inputField.value;
             if (userMessage.trim() !== "") {
                 const messageData = {
-                    user: 'Mas Sendi', // Ganti dengan nama pengguna yang sesuai
+                    user: 'User', // Ganti dengan nama pengguna yang sesuai
                     text: userMessage,
                     profilePic: 'https://via.placeholder.com/40' // Ganti dengan URL foto profil yang sesuai
                 };
-                socket.emit('sendMessage', messageData);
+                socket.send(JSON.stringify({
+                    type: 'sendMessage',
+                    message: messageData
+                }));
                 inputField.value = ''; // Kosongkan input setelah mengirim
             }
         }
