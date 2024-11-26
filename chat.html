@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruang Chat</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">Ruang Chat</div>
+        <div class="chat-messages"></div>
+        <div class="chat-input">
+            <input type="text" placeholder="Ketik pesan Anda..." />
+            <button onclick="sendMessage()">Kirim</button>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk mengirim pesan
+        function sendMessage() {
+            const inputField = document.querySelector('.chat-input input');
+            const messages = document.querySelector('.chat-messages');
+
+            const userMessage = inputField.value;
+            if (userMessage.trim() !== "") {
+                const userMessageElement = document.createElement('div');
+                userMessageElement.textContent = "Anda: " + userMessage;
+                messages.appendChild(userMessageElement);
+                messages.scrollTop = messages.scrollHeight; // Menggulir ke bawah untuk menampilkan pesan terbaru
+
+                // Mengosongkan input field
+                inputField.value = '';
+            }
+        }
+
+        // Menangani pengiriman pesan ketika tombol diklik
+        document.querySelector('.chat-input button').addEventListener('click', sendMessage);
+
+        // Menangani pengiriman pesan dengan menekan Enter
+        document.querySelector('.chat-input input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+  </html>
