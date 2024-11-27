@@ -19,7 +19,7 @@
             <img src="src/sendi.jpg" alt="Profile picture of Mas Sendi, Sarjana Teknik Informatika" class="profile-pic">
             <h1 class="name">Mas Sendi <img src="src/h2.png" alt="Verified Checkmark" class="checkmark"></h1>
             <div class="button-container">
-                <button class="button" aria-label="Ikuti Mas Sendi" onclick="followUser ()">
+                <button class="button" aria-label="Ikuti Mas Sendi" onclick="followUser  ()">
                     <i class="fas fa-user-plus"></i> Ikuti
                 </button>
                 <button class="button" aria-label="Kirim Pesan ke Mas Sendi" onclick="window.location.href='chat.html'">
@@ -29,7 +29,9 @@
             <p class="education"><i class="fas fa-graduation-cap"></i> Pendidikan: Sarjana Teknik Informatika</p>
             <p class="location"><i class="fas fa-map-marker-alt"></i> Tempat Tinggal: Bekasi, Indonesia</p>
             <p class="contact"><i class="fas fa-envelope"></i> Kontak: <a href="mailto:sendiadiningtiasp@gmail.com">sendiadiningtiasp@gmail.com</a></p>
-            <p>Jumlah Pengikut: <span id="follower-number">0</span></p>
+            <div class="followers">
+                <i class="fas fa-users"></i> Jumlah Pengikut: <span id="follower-number">0</span>
+            </div>
             <p class="description">Saya orang yang pekerja keras dan jujur. Saya pandai mengatur waktu, selalu ingin belajar keterampilan baru. Saya ramah, suka menolong, dan sopan, memiliki selera humor yang baik. Saya mampu bekerja secara mandiri di lingkungan yang sibuk dan juga dalam lingkungan tim.</p>
         </div>
 
@@ -64,15 +66,21 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- Footer Section -->
         <footer>
             <div class="footer-content">
                 <p>&copy; 2024 Sendi. Semua hak dilindungi.</p>
                 <div class="social-media">
-                    <a href="https://www.facebook.com/sendi.adt.7" target="_blank"
-                    <a href="https://www.instagram.com/sendi.adt/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Mas Sendi"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/in/sendi-adt/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Mas Sendi"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.facebook.com/sendi.adt.7" target="_blank" rel="noopener noreferrer" aria-label="Facebook Mas Sendi">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/sendi.adt/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Mas Sendi">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sendi-adt/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Mas Sendi">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
                 </div>
             </div>
         </footer>
