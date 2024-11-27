@@ -22,7 +22,7 @@
                 <button class="button" aria-label="Ikuti Mas Sendi" onclick="followUser  ()">
                     <i class="fas fa-user-plus"></i> Ikuti
                 </button>
-                <button class="button" aria-label="Kirim Pesan ke Mas Sendi" onclick="window.location.href='chat.html'">
+                <button class="button" aria-label="Kirim Pesan ke Mas Sendi" onclick="toggleChat()">
                     <i class="fas fa-paper-plane"></i> Kirim Pesan
                 </button>
             </div>
@@ -35,6 +35,17 @@
             <p class="description">Saya orang yang pekerja keras dan jujur. Saya pandai mengatur waktu, selalu ingin belajar keterampilan baru. Saya ramah, suka menolong, dan sopan, memiliki selera humor yang baik. Saya mampu bekerja secara mandiri di lingkungan yang sibuk dan juga dalam lingkungan tim.</p>
         </div>
 
+        <!-- Chat Section -->
+        <div class="chat-container" id="chat-container" style="display: none;">
+            <div class="chat-box" id="chat-box">
+                <!-- Pesan akan ditampilkan di sini -->
+            </div>
+            <div class="input-container">
+                <input type="text" id="message-input" placeholder="Ketik pesan Anda di sini..." aria-label="Ketik pesan Anda">
+                <button id="send-button" aria-label="Kirim pesan">Kirim</button>
+            </div>
+        </div>
+        
         <!-- Posting Section -->
         <div class="posting-container">
             <div class="posting">
@@ -126,6 +137,43 @@
         })
         .catch(error => console.error('Error following user:', error));
     }
+    
+    // Fungsi untuk menampilkan atau menyembunyikan chat
+    function toggleChat() {
+        const chatContainer = document.getElementById('chat-container');
+        chatContainer.style.display = chatContainer.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Mengelola pengiriman pesan
+    document.getElementById('send-button').addEventListener('click', function() {
+        const messageInput = document.getElementById('message-input');
+        const messageText = messageInput.value;
+
+        if (messageText.trim() === '') {
+            alert('Pesan tidak boleh kosong!');
+            return;
+        }
+
+        // Menambahkan pesan pengguna ke chat box
+        addMessage('user', messageText);
+        messageInput.value = ''; // Mengosongkan input setelah mengirim pesan
+
+        // Simulasi pesan dari pengguna lain
+        setTimeout(() => {
+            const responseMessage = 'Pesan balasan dari Mas Sendi!';
+            addMessage('other', responseMessage);
+        }, 1000); // Simulasi balasan setelah 1 detik
+    });
+
+    function addMessage(sender, text) {
+        const chatBox = document.getElementById('chat-box');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        messageDiv.innerHTML = `<span>${text}</span>`;
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight; // Scroll ke bawah
+    }
 </script>
+    
 </body>
 </html>
