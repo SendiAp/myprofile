@@ -19,7 +19,7 @@
             <img src="src/sendi.jpg" alt="Profile picture of Mas Sendi, Sarjana Teknik Informatika" class="profile-pic">
             <h1 class="name">Mas Sendi <img src="src/h2.png" alt="Verified Checkmark" class="checkmark"></h1>
             <div class="button-container">
-                <button class="button" aria-label="Ikuti Mas Sendi">
+                <button class="button" aria-label="Ikuti Mas Sendi" onclick="followUser ()">
                     <i class="fas fa-user-plus"></i> Ikuti
                 </button>
                 <button class="button" aria-label="Kirim Pesan ke Mas Sendi" onclick="window.location.href='chat.html'">
@@ -76,5 +76,37 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        const username = "MasSendi"; // Ganti dengan username Anda
+
+        // Mengambil jumlah pengikut dari server saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch(`http://localhost:5000/followers/${username}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('follower-number').innerText = data.count; // Memperbarui jumlah pengikut
+                })
+                .catch(error => console.error('Error fetching followers count:', error));
+        });
+
+        // Fungsi untuk mengikuti
+        function followUser () {
+            fetch('http://localhost:5000/follow', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username: username })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Memperbarui jumlah pengikut setelah mengikuti
+                document.getElementById('follower-number').innerText = data.followerCount; 
+                alert('Anda sekarang mengikuti Mas Sendi!'); // Pesan konfirmasi
+            })
+            .catch(error => console.error('Error following user:', error));
+        }
+    </script>
 </body>
 </html>
