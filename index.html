@@ -98,46 +98,6 @@
     </div>
 
 <script>
-    const username = "MasSendi"; // Ganti dengan username Anda
-    let isFollowing = false; // Menyimpan status mengikuti
-
-    // Mengambil jumlah pengikut dari server saat halaman dimuat
-    document.addEventListener('DOMContentLoaded', function() {
-        fetch(`http://localhost:5000/followers/${username}`)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('follower-number').innerText = data.count; // Memperbarui jumlah pengikut
-            })
-            .catch(error => console.error('Error fetching followers count:', error));
-    });
-
-    // Fungsi untuk mengikuti
-    function followUser () {
-        if (isFollowing) {
-            alert('Anda sudah mengikuti Mas Sendi!'); // Pesan jika sudah mengikuti
-            return;
-        }
-
-        fetch('http://localhost:5000/follow', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username: username })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) { // Cek apakah permintaan berhasil
-                isFollowing = true; // Tandai bahwa pengguna sudah mengikuti
-                document.getElementById('follower-number').innerText = data.followerCount; 
-                alert('Anda sekarang mengikuti Mas Sendi!'); // Pesan konfirmasi
-            } else {
-                alert('Gagal mengikuti pengguna.'); // Pesan jika gagal
-            }
-        })
-        .catch(error => console.error('Error following user:', error));
-    }
-    
     // Fungsi untuk menampilkan atau menyembunyikan chat
     function toggleChat() {
         const chatContainer = document.getElementById('chat-container');
