@@ -1,5 +1,5 @@
-# Gunakan image Node.js
-FROM node:16
+# Gunakan image Node.js versi terbaru
+FROM node:23
 
 # Set direktori kerja
 WORKDIR /usr/src/app
@@ -13,8 +13,8 @@ RUN npm install
 # Salin semua file ke dalam kontainer
 COPY . .
 
-# Expose port
-EXPOSE 3000
+# Expose port 5000
+EXPOSE 5000
 
 # Jalankan aplikasi
 CMD ["node", "server.js"]
