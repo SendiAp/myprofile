@@ -1,5 +1,5 @@
 # Gunakan image Node.js
-FROM node:14
+FROM node:16
 
 # Set direktori kerja
 WORKDIR /usr/src/app
