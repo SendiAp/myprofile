@@ -148,30 +148,30 @@
 
     <script>
         // Fungsi untuk mengirim pesan
-        function sendMessage() {
-            const messageInput = document.getElementById("message");
-            const chatBox = document.getElementById("chatBox");
+function sendMessage() {
+    const messageInput = document.getElementById("message");
+    const chatBox = document.getElementById("chatBox");
 
-            // Ambil teks pesan dari input
-            const messageText = messageInput.value.trim();
-            if (messageText === "") {
-                return; // Jangan kirim pesan kosong
-            }
+    // Ambil teks pesan dari input
+    const messageText = messageInput.value.trim();
+    if (messageText === "") {
+        return; // Jangan kirim pesan kosong
+    }
 
-            // Buat elemen pesan baru
-            const messageElement = document.createElement("div");
-            messageElement.classList.add("message");
-            messageElement.innerHTML = `<strong>${getUser Name()}</strong>: ${messageText}`;
+    // Buat elemen pesan baru
+    const messageElement = document.createElement("div");
+    messageElement.classList.add("message");
+    messageElement.innerHTML = `<strong>${getUser Name()}</strong>: ${messageText}`;
 
-            // Tambahkan pesan ke chat box
-            chatBox.appendChild(messageElement);
+    // Tambahkan pesan ke chat box
+    chatBox.appendChild(messageElement);
 
-            // Gulir ke bawah untuk menampilkan pesan terbaru
-            chatBox.scrollTop = chatBox.scrollHeight;
+    // Gulir ke bawah untuk menampilkan pesan terbaru
+    chatBox.scrollTop = chatBox.scrollHeight;
 
-            // Kosongkan input pesan
-            messageInput.value = "";
-        }
+    // Kosongkan input pesan
+    messageInput.value = "";
+}
 
         // Fungsi untuk mendapatkan nama pengguna (dari penyimpanan lokal atau variabel)
         function getUser Name() {
