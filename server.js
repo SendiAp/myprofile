@@ -1,3 +1,4 @@
+// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -11,8 +12,10 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Koneksi ke MongoDB
-mongoose.connect('mongodb://localhost:27017/followerDB', { useNewUrlParser: true, useUnifiedTopology: true })
+// Koneksi ke MongoDB Atlas
+const uri = 'mongodb+srv://<username>:<password>@cluster0.mongodb.net/followerDB?retryWrites=true&w=majority'; // Ganti dengan URL koneksi Anda
+
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
 
