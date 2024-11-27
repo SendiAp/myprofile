@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 // Koneksi ke MongoDB Atlas
 const uri = 'mongodb+srv://sya:sya@cluster0.sfufjbg.mongodb.net/?retryWrites=true&w=majority'; // Ganti dengan URL koneksi Anda
 
-mongoose.connect(uri, { useUnifiedTopology: true }) // Hanya gunakan useUnifiedTopology
+mongoose.connect(uri)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err));
 
