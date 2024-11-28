@@ -244,3 +244,42 @@ footer p {
 .like-button:hover, .comment-button:hover {
     text-decoration: underline;
 }
+
+/* CSS untuk menu slide */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    line-height: 1.6;
+}
+
+.menu-container {
+    margin-top: 20px;
+}
+
+.menu {
+    list-style-type: none;
+    padding: 0;
+    display: flex; /* Menampilkan menu secara horizontal */
+    border-bottom: 2px solid #007BFF; /* Garis bawah menu */
+}
+
+.menu li {
+    margin-right: 20px; /* Jarak antar item menu */
+}
+
+.menu a {
+    text-decoration: none;
+    color: #007BFF;
+    padding: 10px 0;
+    transition: color 0.3s; /* Efek transisi warna */
+}
+
+.menu a:hover {
+    color: #0056b3; /* Warna saat hover */
+}
+
+/* Gaya untuk bagian profil */
+h2 {
+    margin-top: 40px;
+}
