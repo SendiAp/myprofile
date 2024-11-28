@@ -250,7 +250,7 @@ body {
     font-family: 'Roboto', sans-serif; /* Menggunakan font dari Google Fonts */
     margin: 0;
     padding: 0;
-    background: linear-gradient(to right, #6a11cb, #2575fc); /* Latar belakang gradien */
+    background-color: #f4f4f4; /* Latar belakang yang lembut */
     color: #333; /* Warna teks */
 }
 
@@ -293,8 +293,7 @@ header {
     text-decoration: none;
     color: #007BFF; /* Warna teks tautan */
     padding: 10px 0;
-    border-bottom: 2px dashed transparent; /* Garis bawah putus-putus */
-    transition: color 0.3s, border-color 0.3s; /* Efek transisi warna dan border */
+    transition: color 0.3s; /* Efek transisi warna */
     display: flex; /* Menampilkan ikon dan teks dalam satu baris */
     align-items: center; /* Menyelaraskan ikon dan teks secara vertikal */
 }
@@ -305,20 +304,4 @@ header {
 
 .menu a:hover {
     color: #0056b3; /* Warna saat hover */
-}
-
-.menu a:focus,
-.menu a:active {
-    border-bottom: 2px dashed #007BFF; /* Garis bawah putus-putus saat diklik */
-}
-
-/* Gaya untuk bagian profil */
-h2 {
-    margin-top: 40px;
-    color: #2575fc; /* Warna judul */
-}
-
-.description {
-    font-size: 1.1em; /* Ukuran font deskripsi */
-    margin: 10px 0; /* Margin atas dan bawah */
 }
