@@ -246,7 +246,6 @@ footer p {
 }
 
 /* CSS untuk menu slide */
-
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
@@ -261,7 +260,6 @@ body {
     list-style-type: none;
     padding: 0;
     display: flex; /* Menampilkan menu secara horizontal */
-    border-bottom: 2px solid #007BFF; /* Garis bawah menu */
 }
 
 .menu li {
@@ -272,14 +270,15 @@ body {
     text-decoration: none;
     color: #007BFF;
     padding: 10px 0;
-    transition: color 0.3s; /* Efek transisi warna */
+    border-bottom: 2px dashed transparent; /* Garis bawah putus-putus */
+    transition: color 0.3s, border-color 0.3s; /* Efek transisi warna dan border */
 }
 
 .menu a:hover {
     color: #0056b3; /* Warna saat hover */
 }
 
-/* Gaya untuk bagian profil */
-h2 {
-    margin-top: 40px;
+.menu a:focus,
+.menu a:active {
+    border-bottom: 2px dashed #007BFF; /* Garis bawah putus-putus saat diklik */
 }
