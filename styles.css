@@ -307,3 +307,41 @@ footer p {
     padding: 5px;
     border-radius: 5px;
 }
+
+.menu-container {
+    position: relative;
+    margin-top: 20px;
+}
+
+.menu-toggle {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.menu-content {
+    display: none; /* Sembunyikan menu secara default */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.menu-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-content ul li {
+    margin: 5px 0;
+}
+
+.menu-content ul li a {
+    text-decoration: none;
+    color: #007BFF;
+}
