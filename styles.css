@@ -165,6 +165,27 @@ footer p {
     transform: scale(1.2); /* Efek pembesaran saat hover */
 }
 
+/* Donation 
+
+.donation {
+    margin-top: 20px;
+}
+
+.donate-button {
+    background-color: #ffcc00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.donate-button:hover {
+    background-color: #e6b800;
+}
+
 /* CSS untuk tombol atau postingan */
 .button {
     flex-grow: 1; /* Membuat tombol mengisi ruang yang tersedia */
