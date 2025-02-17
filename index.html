@@ -80,12 +80,18 @@
                 const reff_id = generateRandomID();
                 const metode = 'QRIS';
 
-                const result = await create_deposit(reff_id, metode, nominal);
+                const result = await create_deposit(reff_id, metode);
 
                 if (result.error) {
                     alert(result.message);
                 } else {
+                    const qr_string = `Nominal: ${nominal}, Reff ID: ${reff_id}`;
+                    const qr_image = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qr_string)}&size=150x150`;
+
                     alert("Donasi berhasil! Terima kasih atas dukungan Anda.");
+                    const qrCodeContainer = document.createElement('div');
+                    qrCodeContainer.innerHTML = `<h3>QR Code:</h3><img src="${qr_image}" alt="QR Code">`;
+                    document.body.appendChild(qrCodeContainer);
                 }
             } else {
                 alert("Jumlah donasi harus diisi.");
