@@ -5,61 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Mas Sendi - Sarjana Teknik Informatika</title>
     <meta name="description" content="Profil Mas Sendi, seorang Sarjana Teknik Informatika yang tinggal di Bekasi, Indonesia. Pekerja keras, jujur, dan selalu ingin belajar keterampilan baru.">
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div class="profile-container">
-        <!-- Cover Photo Section -->
         <div class="cover-photo" style="background-image: url('src/sampul.jpg');" role="img" aria-label="Cover photo of Mas Sendi"></div>
         
-        <!-- Profile Information Section -->
         <div class="profile-info">
             <img src="src/sendi.jpg" alt="Profile picture of Mas Sendi, Sarjana Teknik Informatika" class="profile-pic">
             <h1 class="name">Mas Sendi <img src="src/h2.png" alt="Verified Checkmark" class="checkmark"></h1>
             <p class="education"><i class="fas fa-graduation-cap"></i> Pendidikan: Sarjana Teknik Informatika</p>
             <p class="location"><i class="fas fa-map-marker-alt"></i> Tempat Tinggal: Bekasi, Indonesia</p>
             <p class="contact"><i class="fas fa-envelope"></i> Kontak: <a href="mailto:sendiadiningtiasp@gmail.com">sendiadiningtiasp@gmail.com</a></p>
-            <div class="followers">
-                <i class="fas fa-users"></i> Jumlah Pengikut: <span id="follower-number">0</span>
-            </div>
             <p class="description">Saya orang yang pekerja keras dan jujur. Saya pandai mengatur waktu, selalu ingin belajar keterampilan baru. Saya ramah, suka menolong, dan sopan, memiliki selera humor yang baik. Saya mampu bekerja secara mandiri di lingkungan yang sibuk dan juga dalam lingkungan tim.</p>
+            
+            <div class="donation">
+                <p>Jika Anda ingin mendukung saya, silakan beri kopi:</p>
+                <button id="donate-button" class="donate-button">
+                    <i class="fas fa-coffee"></i> Beri Kopi
+                </button>
+            </div>
         </div>
         
-        <!-- Posting Section -->
         <div class="posting-container">
-            <div class="posting">
-                <img src="src/A20.jpg" alt="Posting 1" class="posting-pic">
-                <div class="posting-content">
-                    <p class="posting-text">Saya sangat senang dapat berbagi ilmu dengan teman-teman! #SharingIsCaring</p>
-                    <div class="posting-actions">
-                        <button class="like-button" aria-label="Like this posting">
-                            <i class="fas fa-thumbs-up"></i> 12 Likes
-                        </button>
-                        <button class="comment-button" aria-label="Comment on this posting">
-                            <i class="fas fa-comment"></i> 5 Comments
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="posting">
-                <img src="src/A10.jpg" alt="Posting 2" class="posting-pic">
-                <div class="posting-content">
-                    <p class="posting-text">Saya sedang belajar membuat aplikasi mobile dengan React Native! #LearningIsFun</p>
-                    <div class="posting-actions">
-                        <button class="like-button" aria-label="Like this posting">
-                            <i class="fas fa-thumbs-up"></i> 8 Likes
-                        </button>
-                        <button class="comment-button" aria-label="Comment on this posting">
-                            <i class="fas fa-comment"></i> 3 Comments
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <!-- Posting content here -->
         </div>
         
-        <!-- Footer Section -->
         <footer>
             <div class="footer-content">
                 <p>&copy; 2024 Sendi. Semua hak dilindungi.</p>
@@ -74,6 +48,49 @@
             </div>
         </footer>
     </div>
-</script>
+
+    <script>
+        async function create_deposit(reff_id, metode, nominal) {
+            const api_key = 'API_KEY_ATLANTIC';
+            const payload = new URLSearchParams({
+                'api_key': api_key,
+                'reff_id': reff_id,
+                'nominal': nominal,
+                'type': 'ewallet',
+                'metode': metode 
+            });
+
+            const url = 'https://atlantich2h.com/deposit/create';
+            try {
+                const response = await axios.post(url, payload);
+                return response.data;
+            } catch (error) {
+                return {'error': error.message, 'message': 'Terjadi kesalahan saat membuat deposit'};
+            }
+        }
+
+        function generateRandomID() {
+            return 'REF' + Math.floor(Math.random() * 1000000);
+        }
+
+        document.getElementById('donate-button').addEventListener('click', async () => {
+            const nominal = prompt("Masukkan jumlah donasi (misalnya: 10000):");
+
+            if (nominal) {
+                const reff_id = generateRandomID();
+                const metode = 'QRIS';
+
+                const result = await create_deposit(reff_id, metode, nominal);
+
+                if (result.error) {
+                    alert(result.message);
+                } else {
+                    alert("Donasi berhasil! Terima kasih atas dukungan Anda.");
+                }
+            } else {
+                alert("Jumlah donasi harus diisi.");
+            }
+        });
+    </script>
 </body>
 </html>
