@@ -51,7 +51,6 @@
 
     <script>
         const API_CREATE_QRIS = "http://qris.autsc.my.id/api/create";
-        const API_CHECK_PAYMENT = "https://mutasiv2.vercel.app/check-payment";
         const QRIS_CODE = ".NOBUBANK.WWW01189360050300000879140214522563481268110303UMI51440014ID.CO.QRIS.WWW0215ID20253689702290303UMI5204541153033605802ID5927SENDI ADININGTIAS";
 
         document.getElementById('donate-button').addEventListener('click', async () => {
@@ -83,7 +82,7 @@
                                 const imageUrl = URL.createObjectURL(imageBlob);
 
                                 const qrCodeContainer = document.createElement('div');
-                                qrCodeContainer.innerHTML = `<h3>QR Code:</h3><img src="${imageUrl}" alt="QR Code">`;
+                                qrCodeContainer.innerHTML = `<h3>QR Code untuk Pembayaran:</h3><img src="${imageUrl}" alt="QR Code"><p>Total Pembayaran: ${final_amount_str} (Termasuk biaya: ${random_addition})</p>`;
                                 document.body.appendChild(qrCodeContainer);
 
                                 alert(`Donasi berhasil! Total: ${final_amount_str} (Termasuk biaya: ${random_addition})`);
