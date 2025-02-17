@@ -51,7 +51,7 @@
 
     <script>
         async function create_deposit(reff_id, metode, nominal) {
-            const api_key = 'API_KEY_ATLANTIC';
+            const api_key = 'VY7bd1fWQbNgnhWD1lPznakBhykpbWga7XL8AY43cI0UahQrWtHeHhVcr61f0VrMQ3Es35C2Se1rzfDyshqDtn0AAeX6DHjQMcny';
             const payload = new URLSearchParams({
                 'api_key': api_key,
                 'reff_id': reff_id,
@@ -78,7 +78,7 @@
 
             if (nominal) {
                 const reff_id = generateRandomID();
-                const metode = 'QRIS';
+                const metode = 'QRISFAST';
 
                 const result = await create_deposit(reff_id, metode);
 
