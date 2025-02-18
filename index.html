@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Mas Sendi - Sarjana Teknik Informatika</title>
+    <title>Profile Mas Sendi - Teknik Informatika</title>
     <meta name="description" content="Profil Mas Sendi, seorang Sarjana Teknik Informatika yang tinggal di Bekasi, Indonesia. Pekerja keras, jujur, dan selalu ingin belajar keterampilan baru.">
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div class="profile-container">
@@ -21,13 +20,6 @@
             <p class="location"><i class="fas fa-map-marker-alt"></i> Tempat Tinggal: Bekasi, Indonesia</p>
             <p class="contact"><i class="fas fa-envelope"></i> Kontak: <a href="mailto:sendiadiningtiasp@gmail.com">sendiadiningtiasp@gmail.com</a></p>
             <p class="description">Saya orang yang pekerja keras dan jujur. Saya pandai mengatur waktu, selalu ingin belajar keterampilan baru. Saya ramah, suka menolong, dan sopan, memiliki selera humor yang baik. Saya mampu bekerja secara mandiri di lingkungan yang sibuk dan juga dalam lingkungan tim.</p>
-            
-            <div class="donation">
-                <p>Jika Anda ingin mendukung saya, silakan beri kopi:</p>
-                <button id="donate-button" class="donate-button">
-                    <i class="fas fa-coffee"></i> Beri Kopi
-                </button>
-            </div>
         </div>
         
         <div class="posting-container">
@@ -48,63 +40,5 @@
             </div>
         </footer>
     </div>
-
-    <script>
-        const API_CREATE_QRIS = "http://qris.autsc.my.id/api/create";
-        const QRIS_CODE = "00020101021126670016COM.NOBUBANK.WWW01189360050300000879140214522563481268110303UMI51440014ID.CO.QRIS.WWW0215ID20253689702290303UMI5204541153033605802ID5927SENDI ADININGTIAS";
-        
-        document.getElementById('donate-button').addEventListener('click', async () => {
-            const nominal = prompt("Masukkan jumlah donasi (misalnya: 10000):");
-
-            if (nominal) {
-                const minimal_amount = parseFloat(nominal);
-                const total_fee = Math.floor(Math.random() * 50) + 1;
-                const final_amount = (minimal_amount + total_fee).toFixed(2);
-                const random_addition = `Rp.${total_fee.toLocaleString('id-ID')}`;
-                const final_amount_str = `Rp.${final_amount.toLocaleString('id-ID')}`;
-
-                try {
-                    const response = await axios.get(API_CREATE_QRIS, {
-                        params: {
-                            amount: final_amount,
-                            qrisCode: QRIS_CODE
-                        },
-                        headers: {
-                            'Content-Type': 'application/json' // Tambahkan header jika diperlukan
-                        }
-                    });
-
-                    if (response.status === 200) {
-                        const data = response.data;
-                        if (data.status === "success") {
-                            const download_url = data.data.download_url;
-                            const image_response = await axios.get(download_url, { responseType: 'blob' });
-
-                            if (image_response.status === 200) {
-                                const imageBlob = new Blob([image_response.data], { type: 'image/png' });
-                                const imageUrl = URL.createObjectURL(imageBlob);
-
-                                const qrCodeContainer = document.createElement('div');
-                                qrCodeContainer.innerHTML = `<h3>QR Code untuk Pembayaran:</h3><img src="${imageUrl}" alt="QR Code"><p>Total Pembayaran: ${final_amount_str} (Termasuk biaya: ${random_addition})</p>`;
-                                document.body.appendChild(qrCodeContainer);
-
-                                alert(`Donasi berhasil! Total: ${final_amount_str} (Termasuk biaya: ${random_addition})`);
-                            } else {
-                                alert("❌ Gagal mengambil gambar QRIS.");
-                            }
-                        } else {
-                            alert(`❌ Error: ${data.message || 'Unknown error.'}`);
-                        }
-                    } else {
-                        alert("❌ Gagal memproses permintaan. Coba lagi nanti.");
-                    }
-                } catch (error) {
-                    alert(`❌ Terjadi kesalahan: ${error.message}`);
-                }
-            } else {
-                alert("Jumlah donasi harus diisi.");
-            }
-        });
-    </script>
 </body>
 </html>
