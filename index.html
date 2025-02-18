@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Mas Sendi - Teknik Informatika</title>
     <meta name="description" content="Profil Mas Sendi, seorang Sarjana Teknik Informatika yang tinggal di Bekasi, Indonesia. Pekerja keras, jujur, dan selalu ingin belajar keterampilan baru.">
-    <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -26,6 +25,8 @@
             </a>
         </div>
         
+        <div id="donation-result" style="margin-top: 20px;"></div>
+
         <footer>
             <div class="footer-content">
                 <p>&copy; 2024 Sendi. Semua hak dilindungi.</p>
@@ -41,6 +42,81 @@
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        class DonationService {
+            constructor(apiKey) {
+                this._apiKey = apiKey;
+                this._endpoint = 'https://atlantich2h.com'; // Ganti dengan endpoint yang sesuai
+            }
+
+            async createDonation(reffId, nominal, type, method) {
+                try {
+                    const params = new URLSearchParams();
+                    params.append("api_key", this._apiKey);
+                    params.append("reff_id", reffId);
+                    params.append("nominal", nominal);
+                    params.append("type", type);
+                    params.append("metode", method);
+
+                    const response = await axios.post(
+                        `${this._endpoint}/deposit/create`,
+                        params.toString(),
+                        {
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded",
+                            },
+                        }
+                    );
+                    return response.data;
+                } catch (error) {
+                    throw { error: error.message };
+                }
+            }
+        }
+
+        const donationService = new DonationService('VY7bd1fWQbNgnhWD1lPznakBhykpbWga7XL8AY43cI0UahQrWtHeHhVcr61f0VrMQ3Es35C2Se1rzfDyshqDtn0AAeX6DHjQMcny'); // Ganti dengan API key Anda
+
+        function generateRandomReffId() {
+            return 'reff_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        document.getElementById('donation-button').addEventListener('click', async function(event) {
+            event.preventDefault();
+            const donationAmount = prompt("Masukkan jumlah donasi:");
+            
+            if (donationAmount) {
+                try {
+                    const reffId = generateRandomReffId();
+                    const type = 'ewallet';
+                    const method = 'QRISFAST';
+
+                    const result = await donationService.createDonation(reffId, donationAmount, type, method);
+                    
+                    const donationResultDiv = document.getElementById('donation-result');
+                    donationResultDiv.innerHTML = ''; // Clear previous results
+
+                    if (result.status) {
+                        const data = result.data;
+                        const totalAmount = data.nominal + data.fee;
+                        const message = `Jumlah yang harus dibayar: ${totalAmount}<br>QRIS: ${data.qr_string}`;
+                        const qrImage = document.createElement('img');
+                        qrImage.src = data.qr_image;
+                        qrImage.alt = 'QR Code';
+                        qrImage.style.width = '200px';
+
+                        donationResultDiv.innerHTML = message;
+                        donationResultDiv.appendChild(qrImage);
+                    } else {
+                        const message = 'Terjadi kesalahan: ' + result.message;
+                        donationResultDiv.innerHTML = message;
+                    }
+                } catch (error) {
+                    const message = 'Terjadi kesalahan: ' + error.error;
+                    const donationResultDiv = document.getElementById('donation-result');
+                    donationResultDiv.innerHTML = message;
+                }
+            }
+        });
+    </script>
 </body>
-</html>
+</html> 
