@@ -167,21 +167,18 @@ footer p {
 
 /* Donation 
 
-.donation {
-    margin-top: 20px;
-}
-
-.donate-button {
-    background-color: #ffcc00;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+.gift-button {
+    display: inline-block;
+    background-color: #ff4757;
+    color: white;
     padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
     font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    margin-top: 15px;
+    transition: background-color 0.3s;
 }
 
-.donate-button:hover {
-    background-color: #e6b800;
+.gift-button:hover {
+    background-color: #ff6b81;
 }
