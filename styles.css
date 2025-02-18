@@ -166,3 +166,25 @@ footer p {
 }
 
 /* Donation */
+
+.donation-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+    cursor: pointer;
+}
+
+.donation-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.donation-button:active {
+    transform: scale(0.95);
+}
