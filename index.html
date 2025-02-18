@@ -20,13 +20,9 @@
             <p class="location"><i class="fas fa-map-marker-alt"></i> Tempat Tinggal: Bekasi, Indonesia</p>
             <p class="contact"><i class="fas fa-envelope"></i> Kontak: <a href="mailto:sendiadiningtiasp@gmail.com">sendiadiningtiasp@gmail.com</a></p>
             <p class="description">Saya orang yang pekerja keras dan jujur. Saya pandai mengatur waktu, selalu ingin belajar keterampilan baru. Saya ramah, suka menolong, dan sopan, memiliki selera humor yang baik. Saya mampu bekerja secara mandiri di lingkungan yang sibuk dan juga dalam lingkungan tim.</p>
-            <a href="#" class="gift-button" aria-label="Kirim Gift kepada Mas Sendi" id="gift-button">
-                <i class="fas fa-gift"></i> Kirim Gift
+            <a href="#" class="donation-button" aria-label="Kirim Donasi kepada Mas Sendi" id="donation-button">
+                <i class="fas fa-gift"></i> Kirim Donasi
             </a>
-        </div>
-        
-        <div class="posting-container">
-            <!-- Posting content here -->
         </div>
         
         <footer>
@@ -45,12 +41,11 @@
     </div>
 
     <script>
-        document.getElementById('gift-button').addEventListener('click', function(event) {
+        document.getElementById('donation-button').addEventListener('click', function(event) {
             event.preventDefault(); // Mencegah aksi default
-            const giftOptions = "Pilih Gift:\n1. 🍩 Donat Coklat\n2. 🐻 Beruang\n3. ☕ Kopi";
-            const selectedGift = prompt(giftOptions);
-            if (selectedGift) {
-                alert('Anda telah memilih: ' + selectedGift);
+            const donationAmount = prompt("Masukkan jumlah donasi:");
+            if (donationAmount) {
+                alert('Terima kasih! Anda telah mendonasikan: ' + donationAmount);
             }
         });
     </script>
