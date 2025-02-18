@@ -7,8 +7,7 @@
     <meta name="description" content="Profil Mas Sendi, seorang Sarjana Teknik Informatika yang tinggal di Bekasi, Indonesia. Pekerja keras, jujur, dan selalu ingin belajar keterampilan baru.">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="styles.css"> <!-- Menyambungkan file CSS -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="profile-container">
@@ -47,7 +46,7 @@
         class DonationService {
             constructor(apiKey) {
                 this._apiKey = apiKey;
-                this._endpoint = 'https://atlantich2h.com'; // Ganti dengan endpoint yang sesuai
+                this._endpoint = 'https://atlantich2h.com';
             }
 
             async createDonation(reffId, nominal, type, method) {
@@ -59,23 +58,27 @@
                     params.append("type", type);
                     params.append("metode", method);
 
-                    const response = await axios.post(
-                        `${this._endpoint}/deposit/create`,
-                        params.toString(),
-                        {
-                            headers: {
-                                "Content-Type": "application/x-www-form-urlencoded",
-                            },
-                        }
-                    );
-                    return response.data;
+                    const response = await fetch(`${this._endpoint}/deposit/create`, {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                        },
+                        body: params.toString(),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    return data;
                 } catch (error) {
                     throw { error: error.message };
                 }
             }
         }
 
-        const donationService = new DonationService('VY7bd1fWQbNgnhWD1lPznakBhykpbWga7XL8AY43cI0UahQrWtHeHhVcr61f0VrMQ3Es35C2Se1rzfDyshqDtn0AAeX6DHjQMcny'); // Ganti dengan API key Anda
+        const donationService = new DonationService('VY7bd1fWQbNgnhWD1lPznakBhykpbWga7XL8AY43cI0UahQrWtHeHhVcr61f0VrMQ3Es35C2Se1rzfDyshqDtn0AAeX6DHjQMcny');
 
         function generateRandomReffId() {
             return 'reff_' + Math.random().toString(36).substr(2, 9);
@@ -94,7 +97,7 @@
                     const result = await donationService.createDonation(reffId, donationAmount, type, method);
                     
                     const donationResultDiv = document.getElementById('donation-result');
-                    donationResultDiv.innerHTML = ''; // Clear previous results
+                    donationResultDiv.innerHTML = '';
 
                     if (result.status) {
                         const data = result.data;
@@ -120,4 +123,4 @@
         });
     </script>
 </body>
-</html> 
+</html>
