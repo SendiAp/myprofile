@@ -166,26 +166,3 @@ footer p {
 }
 
 /* Donation */
-
-.gift-button {
-    display: inline-block;
-    background-color: #ff4757;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    margin-top: 15px;
-    transition: background-color 0.3s;
-}
-
-.gift-button:hover {
-    background-color: #ff6b81;
-}
-
-.gift-options {
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: #f9f9f9;
-}
