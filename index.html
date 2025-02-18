@@ -45,7 +45,7 @@
         class DonationService {
             constructor(apiKey) {
                 this._apiKey = apiKey;
-                this._endpoint = 'https://api.example.com'; // Ganti dengan endpoint yang sesuai
+                this._endpoint = 'https://atlantich2h.com'; // Ganti dengan endpoint yang sesuai
             }
 
             async createDonation(reffId, nominal, type, method) {
@@ -77,7 +77,7 @@
             return 'reff_' + Math.random().toString(36).substr(2, 9);
         }
 
-        const donationService = new DonationService('YOUR_API_KEY'); // Ganti dengan API key Anda
+        const donationService = new DonationService('VY7bd1fWQbNgnhWD1lPznakBhykpbWga7XL8AY43cI0UahQrWtHeHhVcr61f0VrMQ3Es35C2Se1rzfDyshqDtn0AAeX6DHjQMcny'); // Ganti dengan API key Anda
 
         document.getElementById('donation-button').addEventListener('click', async function(event) {
             event.preventDefault();
