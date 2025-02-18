@@ -40,12 +40,73 @@
         </footer>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        document.getElementById('donation-button').addEventListener('click', function(event) {
-            event.preventDefault(); // Mencegah aksi default
+        class DonationService {
+            constructor(apiKey) {
+                this._apiKey = apiKey;
+                this._endpoint = 'https://api.example.com'; // Ganti dengan endpoint yang sesuai
+            }
+
+            async createDonation(reffId, nominal, type, method) {
+                try {
+                    const params = new URLSearchParams();
+                    params.append("api_key", this._apiKey);
+                    params.append("reff_id", reffId);
+                    params.append("nominal", nominal);
+                    params.append("type", type);
+                    params.append("metode", method);
+
+                    const response = await axios.post(
+                        `${this._endpoint}/deposit/create`,
+                        params.toString(),
+                        {
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded",
+                            },
+                        }
+                    );
+                    return response.data;
+                } catch (error) {
+                    throw { error: error.message };
+                }
+            }
+        }
+
+        function generateRandomReffId() {
+            return 'reff_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        const donationService = new DonationService('YOUR_API_KEY'); // Ganti dengan API key Anda
+
+        document.getElementById('donation-button').addEventListener('click', async function(event) {
+            event.preventDefault();
             const donationAmount = prompt("Masukkan jumlah donasi:");
+            
             if (donationAmount) {
-                alert('Terima kasih! Anda telah mendonasikan: ' + donationAmount);
+                try {
+                    const reffId = generateRandomReffId();
+                    const type = 'ewallet';
+                    const method = 'QRISFAST';
+
+                    const result = await donationService.createDonation(reffId, donationAmount, type, method);
+                    
+                    if (result.status) {
+                        const data = result.data;
+                        const totalAmount = data.nominal + data.fee;
+                        alert(`Jumlah yang harus dibayar: ${totalAmount}\nQRIS: ${data.qr_string}`);
+                        
+                        const qrImage = document.createElement('img');
+                        qrImage.src = data.qr_image;
+                        qrImage.alt = 'QR Code';
+                        qrImage.style.width = '200px';
+                        document.body.appendChild(qrImage);
+                    } else {
+                        alert('Terjadi kesalahan: ' + result.message);
+                    }
+                } catch (error) {
+                    alert('Terjadi kesalahan: ' + error.error);
+                }
             }
         });
     </script>
