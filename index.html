@@ -23,15 +23,6 @@
             <a href="#" class="gift-button" aria-label="Kirim Gift kepada Mas Sendi" id="gift-button">
                 <i class="fas fa-gift"></i> Kirim Gift
             </a>
-
-            <div id="gift-options" class="gift-options" style="display: none;">
-                <h3>Pilih Gift:</h3>
-                <ul>
-                    <li><button class="gift-item" data-gift="Donat Coklat">Donat Coklat</button></li>
-                    <li><button class="gift-item" data-gift="Donat Stroberi">Donat Stroberi</button></li>
-                    <li><button class="gift-item" data-gift="Kopi">Kopi</button></li>
-                </ul>
-            </div>
         </div>
         
         <div class="posting-container">
@@ -56,17 +47,11 @@
     <script>
         document.getElementById('gift-button').addEventListener('click', function(event) {
             event.preventDefault(); // Mencegah aksi default
-            const giftOptions = document.getElementById('gift-options');
-            giftOptions.style.display = giftOptions.style.display === 'none' ? 'block' : 'none';
-        });
-
-        const giftItems = document.querySelectorAll('.gift-item');
-        giftItems.forEach(item => {
-            item.addEventListener('click', function() {
-                const selectedGift = this.getAttribute('data-gift');
+            const giftOptions = "Pilih Gift:\n1. 🍩 Donat Coklat\n2. 🐻 Beruang\n3. ☕ Kopi";
+            const selectedGift = prompt(giftOptions);
+            if (selectedGift) {
                 alert('Anda telah memilih: ' + selectedGift);
-                document.getElementById('gift-options').style.display = 'none'; // Sembunyikan pilihan setelah memilih
-            });
+            }
         });
     </script>
 </body>
