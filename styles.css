@@ -182,3 +182,23 @@ footer p {
 .gift-button:hover {
     background-color: #ff6b81;
 }
+
+.gift-options {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.gift-item {
+    background-color: #4CAF50; /* Hijau */
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin: 5px 0;
+}
+
+.gift-item:hover {
+    background-color: #45a049; /* Lebih gelap saat hover */
+}
