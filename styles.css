@@ -182,3 +182,10 @@ footer p {
 .gift-button:hover {
     background-color: #ff6b81;
 }
+
+.gift-options {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
