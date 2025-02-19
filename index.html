@@ -88,7 +88,7 @@
                     const type = 'ewallet';
                     const method = 'QRISFAST';
 
-                    console.log(`Mengirim permintaan donasi: ${donationAmount}, reffId: ${reffId}, type: ${type}, method: ${method}`);
+                    alert(`Mengirim permintaan donasi: ${donationAmount}, reffId: ${reffId}, type: ${type}, method: ${method}`);
                     const result = await donationService.createDonation(reffId, donationAmount, type, method);
                     
                     const donationResultDiv = document.getElementById('donation-result');
@@ -110,10 +110,9 @@
                         donationResultDiv.innerHTML = message;
                     }
                 } catch (error) {
-                    console.error('Kesalahan saat mengirim permintaan:', error);
-                    const message = 'Terjadi kesalahan: ' + (error.response ? error.response.data : error.error);
+                    alert('Kesalahan saat mengirim permintaan: ' + (error.response ? error.response.data : error.error));
                     const donationResultDiv = document.getElementById('donation-result');
-                    donationResultDiv.innerHTML = message;
+                    donationResultDiv.innerHTML = 'Terjadi kesalahan: ' + (error.response ? error.response.data : error.error);
                 }
             }
         });
