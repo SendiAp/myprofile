@@ -41,3 +41,82 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        async function createPayment() {
+            const saweriaUsername = "mas_sendi";
+            const amount = prompt("Masukkan jumlah donasi:");
+            const sender = prompt("Masukkan nama Anda:");
+            const email = prompt("Masukkan email Anda:");
+            const pesan = prompt("Masukkan pesan (opsional):");
+
+            if (!amount || !sender || !email) {
+                alert("Parameter tidak boleh kosong!");
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://saweria.co/${saweriaUsername}`);
+                const text = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+                const nextDataScript = doc.getElementById('__NEXT_DATA__');
+
+                if (!nextDataScript) {
+                    throw new Error("Akun Saweria tidak ditemukan");
+                }
+
+                const nextData = JSON.parse(nextDataScript.text);
+                const userId = nextData.props.pageProps.data.id;
+
+                if (!userId) {
+                    throw new Error("Akun Saweria tidak ditemukan");
+                }
+
+                const payload = {
+                    agree: true,
+                    notUnderage: true,
+                    message: pesan || "",
+                    amount: parseInt(amount),
+                    payment_type: "qris",
+                    vote: "",
+                    currency: "IDR",
+                    customer_info: {
+                        first_name: sender,
+                        email: insertPlusInEmail(email, sender),
+                        phone: ""
+                    }
+                };
+
+                const paymentResponse = await fetch(`https://backend.saweria.co/donations/${userId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const paymentData = await paymentResponse.json();
+                const paymentDetails = paymentData.data;
+
+                document.getElementById('donation-result').innerHTML = `
+                    <h3>Donasi Berhasil!</h3>
+                    <p>QR Code: <img src="${paymentDetails.qr_string}" alt="QR Code"></p>
+                    <p>ID Pembayaran: ${paymentDetails.id}</p>
+                `;
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        function insertPlusInEmail(email, sender) {
+            return email.replace('@', `+${sender}@`);
+        }
+
+        document.getElementById('donation-button').addEventListener('click', function(event) {
+            event.preventDefault();
+            createPayment();
+        });
+    </script>
+</body>
+</html>
