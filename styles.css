@@ -166,6 +166,28 @@ footer p {
 }
 
 /* CSS untuk modal donasi */
+
+.donation-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #28a745; /* Warna hijau */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.donation-button:hover {
+    background-color: #218838; /* Warna hijau lebih gelap saat hover */
+    transform: scale(1.05); /* Efek zoom saat hover */
+}
+
+.donation-button:active {
+    transform: scale(0.95); /* Efek zoom saat tombol ditekan */
+}
+
 .modal {
     display: none; /* Tersembunyi secara default */
     position: fixed;
