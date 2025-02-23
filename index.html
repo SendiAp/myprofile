@@ -11,10 +11,10 @@
 </head>
 <body>
     <div class="profile-container">
-        <div class="cover-photo" style="background-image: url('src/sampul.jpg');" role="img" aria-label="Cover photo of Mas Sendi"></div>
+        <div class="cover-photo" style="background-image: url('public/sampul.jpg');" role="img" aria-label="Cover photo of Mas Sendi"></div>
         
         <div class="profile-info">
-            <img src="src/sendi.jpg" alt="Profile picture of Mas Sendi, Sarjana Teknik Informatika" class="profile-pic">
+            <img src="public/sendi.jpg" alt="Profile picture of Mas Sendi, Sarjana Teknik Informatika" class="profile-pic">
             <h1 class="name">Mas Sendi <img src="src/h2.png" alt="Verified Checkmark" class="checkmark"></h1>
             <p class="education"><i class="fas fa-graduation-cap"></i> Pendidikan: Sarjana Teknik Informatika</p>
             <p class="location"><i class="fas fa-map-marker-alt"></i> Tempat Tinggal: Bekasi, Indonesia</p>
@@ -44,51 +44,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        async function createPaymentString(saweriaUsername, amount, sender, email, pesan) {
-            if (!saweriaUsername || !amount || !sender || !email || !pesan) {
-                throw new Error("Parameter is missing!");
-            }
-
-            const response = await axios.get(`https://saweria.co/${saweriaUsername}`);
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(response.data, 'text/html');
-            const nextDataScript = doc.getElementById('__NEXT_DATA__');
-
-            if (!nextDataScript) {
-                throw new Error("Saweria account not found");
-            }
-
-            const nextData = JSON.parse(nextDataScript.text);
-            const userId = nextData.props.pageProps.data.id;
-
-            if (!userId) {
-                throw new Error("Saweria account not found");
-            }
-
-            const payload = {
-                agree: true,
-                notUnderage: true,
-                message: pesan,
-                amount: parseInt(amount),
-                payment_type: "qris",
-                vote: "",
-                currency: "IDR",
-                customer_info: {
-                    first_name: sender,
-                    email: `${sender}+${email}`,
-                    phone: ""
-                }
-            };
-
-            const postResponse = await axios.post(`https://backend.saweria.co/donations/${userId}`, payload);
-            return postResponse.data.data;
-        }
-
-        async function createPaymentQR(saweriaUsername, amount, sender, email, pesan) {
-            const paymentDetails = await createPaymentString(saweriaUsername, amount, sender, email, pesan);
-            return [paymentDetails.qr_string, paymentDetails.id];
-        }
-
         document.getElementById('donation-button').addEventListener('click', async function(event) {
             event.preventDefault();
             const donationAmount = prompt("Masukkan jumlah donasi:");
@@ -98,11 +53,31 @@
 
             if (donationAmount && senderName && email && message) {
                 try {
-                    const saweriaUsername = 'SendiAp'; // Ganti dengan username Saweria yang sesuai
-                    const [qrString, paymentId] = await createPaymentQR(saweriaUsername, donationAmount, senderName, email, message);
-                    
+                    const saweriaUsername = 'username_saweria'; // Ganti dengan username Saweria yang sesuai
+                    const userId = 'user_id'; // Ganti dengan user ID yang sesuai
+
+                    const payload = {
+                        agree: true,
+                        notUnderage: true,
+                        message: message,
+                        amount: parseInt(donationAmount),
+                        payment_type: "qris",
+                        vote: "",
+                        currency: "IDR",
+                        customer_info: {
+                            first_name: senderName,
+                            email: `${senderName}+${email}`,
+                            phone: ""
+                        }
+                    };
+
+                    const postResponse = await axios.post('/api/saweria', {
+                        userId: userId,
+                        payload: payload
+                    });
+
                     const donationResultDiv = document.getElementById('donation-result');
-                    donationResultDiv.innerHTML = `QR Code: <br><img src="${qrString}" alt="QR Code" style="width: 200px;"><br>Payment ID: ${paymentId}`;
+                    donationResultDiv.innerHTML = `QR Code: <br><img src="${postResponse.data.qr_string}" alt="QR Code" style="width: 200px;"><br>Payment ID: ${postResponse.data.id}`;
                 } catch (error) {
                     alert('Kesalahan saat mengirim permintaan: ' + error.message);
                     const donationResultDiv = document.getElementById('donation-result');
@@ -112,4 +87,4 @@
         });
     </script>
 </body>
-</html>
+    </html>
