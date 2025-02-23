@@ -9,8 +9,7 @@
     "start": "vercel start"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "beautifulsoup4": "^4.9.3"  // Jika Anda menggunakan BeautifulSoup di Node.js, pastikan untuk menyesuaikan ini
+    "axios": "^0.21.1"
   },
   "engines": {
     "node": "22.x"
