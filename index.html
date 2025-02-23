@@ -44,75 +44,69 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        class DonationService {
-            constructor(apiKey) {
-                this._apiKey = apiKey;
-                this._endpoint = 'https://atlantich2h.com';
+        async function createPaymentString(saweriaUsername, amount, sender, email, pesan) {
+            if (!saweriaUsername || !amount || !sender || !email || !pesan) {
+                throw new Error("Parameter is missing!");
             }
 
-            async createDonation(reffId, nominal, type, method) {
-                try {
-                    const params = new URLSearchParams();
-                    params.append("api_key", this._apiKey);
-                    params.append("reff_id", reffId);
-                    params.append("nominal", nominal);
-                    params.append("type", type);
-                    params.append("metode", method);
+            const response = await axios.get(`https://saweria.co/${saweriaUsername}`);
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(response.data, 'text/html');
+            const nextDataScript = doc.getElementById('__NEXT_DATA__');
 
-                    const response = await axios.post(`${this._endpoint}/deposit/create`, params.toString(), {
-                        headers: {
-                            "Content-Type": "application/x-www-form-urlencoded",
-                        },
-                    });
+            if (!nextDataScript) {
+                throw new Error("Saweria account not found");
+            }
 
-                    return response.data;
-                } catch (error) {
-                    throw { error: error.message, response: error.response };
+            const nextData = JSON.parse(nextDataScript.text);
+            const userId = nextData.props.pageProps.data.id;
+
+            if (!userId) {
+                throw new Error("Saweria account not found");
+            }
+
+            const payload = {
+                agree: true,
+                notUnderage: true,
+                message: pesan,
+                amount: parseInt(amount),
+                payment_type: "qris",
+                vote: "",
+                currency: "IDR",
+                customer_info: {
+                    first_name: sender,
+                    email: `${sender}+${email}`,
+                    phone: ""
                 }
-            }
+            };
+
+            const postResponse = await axios.post(`https://backend.saweria.co/donations/${userId}`, payload);
+            return postResponse.data.data;
         }
 
-        const donationService = new DonationService('VY7bd1fWQbNgnhWD1lPznakBhykpbWga7XL8AY43cI0UahQrWtHeHhVcr61f0VrMQ3Es35C2Se1rzfDyshqDtn0AAeX6DHjQMcny');
-
-        function generateRandomReffId() {
-            return 'reff_' + Math.random().toString(36).substr(2, 9);
+        async function createPaymentQR(saweriaUsername, amount, sender, email, pesan) {
+            const paymentDetails = await createPaymentString(saweriaUsername, amount, sender, email, pesan);
+            return [paymentDetails.qr_string, paymentDetails.id];
         }
 
         document.getElementById('donation-button').addEventListener('click', async function(event) {
             event.preventDefault();
             const donationAmount = prompt("Masukkan jumlah donasi:");
-            
-            if (donationAmount) {
-                try {
-                    const reffId = generateRandomReffId();
-                    const type = 'ewallet';
-                    const method = 'QRISFAST';
+            const senderName = prompt("Masukkan nama Anda:");
+            const email = prompt("Masukkan email Anda:");
+            const message = prompt("Masukkan pesan:");
 
-                    alert(`Mengirim permintaan donasi: ${donationAmount}, reffId: ${reffId}, type: ${type}, method: ${method}`);
-                    const result = await donationService.createDonation(reffId, donationAmount, type, method);
+            if (donationAmount && senderName && email && message) {
+                try {
+                    const saweriaUsername = 'username_saweria'; // Ganti dengan username Saweria yang sesuai
+                    const [qrString, paymentId] = await createPaymentQR(saweriaUsername, donationAmount, senderName, email, message);
                     
                     const donationResultDiv = document.getElementById('donation-result');
-                    donationResultDiv.innerHTML = '';
-
-                    if (result.status) {
-                        const data = result.data;
-                        const totalAmount = data.nominal + data.fee;
-                        const message = `Jumlah yang harus dibayar: ${totalAmount}<br>QRIS: ${data.qr_string}`;
-                        const qrImage = document.createElement('img');
-                        qrImage.src = data.qr_image;
-                        qrImage.alt = 'QR Code';
-                        qrImage.style.width = '200px';
-
-                        donationResultDiv.innerHTML = message;
-                        donationResultDiv.appendChild(qrImage);
-                    } else {
-                        const message = 'Terjadi kesalahan: ' + result.message;
-                        donationResultDiv.innerHTML = message;
-                    }
+                    donationResultDiv.innerHTML = `QR Code: <br><img src="${qrString}" alt="QR Code" style="width: 200px;"><br>Payment ID: ${paymentId}`;
                 } catch (error) {
-                    alert('Kesalahan saat mengirim permintaan: ' + (error.response ? error.response.data : error.error));
+                    alert('Kesalahan saat mengirim permintaan: ' + error.message);
                     const donationResultDiv = document.getElementById('donation-result');
-                    donationResultDiv.innerHTML = 'Terjadi kesalahan: ' + (error.response ? error.response.data : error.error);
+                    donationResultDiv.innerHTML = 'Terjadi kesalahan: ' + error.message;
                 }
             }
         });
