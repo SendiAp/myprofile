@@ -52,9 +52,6 @@
             <label for="sender">Nama Anda:</label>
             <input type="text" id="sender" placeholder="Masukkan nama Anda" required>
             <br>
-            <label for="email">Email Anda:</label>
-            <input type="email" id="email" placeholder="Masukkan email Anda" required>
-            <br>
             <label for="message">Pesan (opsional):</label>
             <textarea id="message" placeholder="Masukkan pesan Anda (opsional)"></textarea>
             <br>
@@ -81,10 +78,9 @@
         document.getElementById('submit-donation').addEventListener('click', function() {
             const amount = document.getElementById('amount').value;
             const sender = document.getElementById('sender').value;
-            const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
 
-            if (!amount || !sender || !email) {
+            if (!amount || !sender) {
                 alert("Parameter tidak boleh kosong!");
                 return;
             }
@@ -93,7 +89,6 @@
                 <h3>Donasi Berhasil!</h3>
                 <p>Jumlah Donasi: ${amount}</p>
                 <p>Nama Pengirim: ${sender}</p>
-                <p>Email: ${email}</p>
                 <p>Pesan: ${message || "Tidak ada pesan"}</p>
             `;
 
