@@ -1,24 +1,19 @@
 {
-  "name": "atlantic-pedia",
+  "name": "MyProfile",
   "version": "1.0.0",
-  "description": "Integrasi atlantic-pedia to your nodejs project",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SendiAp/myprofile.git"
+  "description": "A simple Vercel app for handling donations via Saweria.",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "vercel build",
+    "start": "vercel start"
   },
-  "keywords": [
-    "atlantic-pedia",
-    "store",
-    "nodejs"
-  ],
-  "author": "Lutz Dev",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/padukalutz/atlantic-pedia/issues"
-  },
-  "homepage": "https://github.com/padukalutz/atlantic-pedia#readme",
   "dependencies": {
-    "axios": "^1.6.8"
-  }
+    "axios": "^0.21.1"
+  },
+  "engines": {
+    "node": "14.x"
+  },
+  "author": "SendiAp",
+  "license": "MIT"
 }
