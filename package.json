@@ -2,7 +2,7 @@
   "name": "MyProfile",
   "version": "1.0.0",
   "description": "A simple Express app deployed on Vercel.",
-  "main": "server.js",
+  "main": "index.html",
   "scripts": {
     "dev": "vercel dev",
     "start": "node index.html"
@@ -14,7 +14,7 @@
     "vercel": "^41.1.4"
   },
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   },
   "author": "SendiAp",
   "license": "MIT"
