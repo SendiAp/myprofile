@@ -141,7 +141,9 @@
                 }
             };
 
-            const postResponse = await axios.post(`https://backend.saweria.co/donations/${userId}`, payload);
+            const postResponse = await axios.post(`https://backend.saweria.co/donations/${userId}`, payload, {
+                timeout: 5000
+        });
             
             return postResponse.data.data;
         }
