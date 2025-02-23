@@ -109,7 +109,7 @@
                 throw new Error("Parameter is missing!");
             }
 
-            const response = await axios.get('https://saweria.co/${saweriaUsername', { timeout: 5000 });
+            const response = await axios.get('https://saweria.co/${saweriaUsername}', { timeout: 5000 });
             const text = response.data;
             
             const parser = new DOMParser();
