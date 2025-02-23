@@ -2,10 +2,10 @@
   "name": "MyProfile",
   "version": "1.0.0",
   "description": "A simple Express app deployed on Vercel.",
-  "main": "index.html",
+  "main": "index.js", // Ganti dengan file JavaScript yang menjalankan server
   "scripts": {
     "dev": "vercel dev",
-    "start": "node index.html"
+    "start": "node index.js" // Ganti dengan file JavaScript yang menjalankan server
   },
   "dependencies": {
     "express": "^4.17.1"
@@ -17,5 +17,6 @@
     "node": "22.x"
   },
   "author": "SendiAp",
-  "license": "MIT"
+  "license": "MIT",
+  "type": "module" // Tambahkan ini jika Anda ingin menggunakan ESM
 }
