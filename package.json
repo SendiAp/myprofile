@@ -1,15 +1,17 @@
 {
-  "name": "MyProfile",
+  "name": "SendiAp",
   "version": "1.0.0",
-  "description": "A simple Vercel app for handling donations via Saweria.",
-  "main": "index.html",
+  "description": "A simple Express app deployed on Vercel.",
+  "main": "server.js",
   "scripts": {
     "dev": "vercel dev",
-    "build": "vercel build",
-    "start": "vercel start"
+    "start": "node index.html"
   },
   "dependencies": {
-    "axios": "^0.21.1"
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "vercel": "^41.1.4"
   },
   "engines": {
     "node": "20.x"
