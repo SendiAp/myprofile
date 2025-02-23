@@ -98,7 +98,7 @@
 
             if (donationAmount && senderName && email && message) {
                 try {
-                    const saweriaUsername = 'username_saweria'; // Ganti dengan username Saweria yang sesuai
+                    const saweriaUsername = 'SendiAp'; // Ganti dengan username Saweria yang sesuai
                     const [qrString, paymentId] = await createPaymentQR(saweriaUsername, donationAmount, senderName, email, message);
                     
                     const donationResultDiv = document.getElementById('donation-result');
