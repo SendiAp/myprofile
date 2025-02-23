@@ -109,7 +109,7 @@
                 throw new Error("Parameter is missing!");
             }
 
-            const response = await axios.get(`https://saweria.co/${saweriaUsername}`);
+            const response = await axios.get('https://saweria.co/${saweriaUsername', { timeout: 5000 });
             const text = response.data;
             
             const parser = new DOMParser();
@@ -142,6 +142,7 @@
             };
 
             const postResponse = await axios.post(`https://backend.saweria.co/donations/${userId}`, payload);
+            
             return postResponse.data.data;
         }
 
