@@ -111,7 +111,7 @@
 
             const response = await axios.get(`https://saweria.co/${saweriaUsername}`, { timeout: 5000 });
             const text = response.data;
-            
+
             const parser = new DOMParser();
             const doc = parser.parseFromString(text, "text/html");
             
@@ -121,7 +121,7 @@
             }
             
             const nextData = JSON.parse(nextDataScript.textContent);
-            const userId = nextData?.props?.pageProps?.data?.id; // Menggunakan optional chaining
+            const userId = nextData?.props?.pageProps?.data?.id;
             if (!userId) {
                 throw new Error("Akun Saweria tidak ditemukan");
             }
@@ -142,7 +142,7 @@
             };
 
             const postResponse = await axios.post(`https://backend.saweria.co/donations/${userId}`, payload, {
-                timeout: 5000
+                timeout: 10000
         });
             
             return postResponse.data.data;
