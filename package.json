@@ -12,7 +12,7 @@
     "axios": "^0.21.1"
   },
   "engines": {
-    "node": "22.x"
+    "node": "20.x"
   },
   "author": "SendiAp",
   "license": "MIT"
