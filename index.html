@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="profile-container">
-        <div class="cover-photo" style="background-image: url('public/sampul.jpg');" role="img" aria-label="Cover photo of Mas Sendi"></div>
+        <div class="cover-photo" style="background-image: url('src/sampul.jpg');" role="img" aria-label="Cover photo of Mas Sendi"></div>
         
         <div class="profile-info">
             <img src="src/sendi.jpg" alt="Profile picture of Mas Sendi, Sarjana Teknik Informatika" class="profile-pic">
@@ -103,9 +103,12 @@
             return email.replace('@', `+${sender}@`);
         }
 
-        document.getElementById('donation-button').addEventListener('click', function(event) {
-            event.preventDefault();
-            createPayment();
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('donation-button').addEventListener('click', function(event) {
+                event.preventDefault();
+                console.log("Tombol donasi diklik");
+                createPayment();
+            });
         });
     </script>
 </body>
