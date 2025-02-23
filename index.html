@@ -14,7 +14,7 @@
         <div class="cover-photo" style="background-image: url('public/sampul.jpg');" role="img" aria-label="Cover photo of Mas Sendi"></div>
         
         <div class="profile-info">
-            <img src="public/sendi.jpg" alt="Profile picture of Mas Sendi, Sarjana Teknik Informatika" class="profile-pic">
+            <img src="src/sendi.jpg" alt="Profile picture of Mas Sendi, Sarjana Teknik Informatika" class="profile-pic">
             <h1 class="name">Mas Sendi <img src="src/h2.png" alt="Verified Checkmark" class="checkmark"></h1>
             <p class="education"><i class="fas fa-graduation-cap"></i> Pendidikan: Sarjana Teknik Informatika</p>
             <p class="location"><i class="fas fa-map-marker-alt"></i> Tempat Tinggal: Bekasi, Indonesia</p>
@@ -41,50 +41,3 @@
             </div>
         </footer>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        document.getElementById('donation-button').addEventListener('click', async function(event) {
-            event.preventDefault();
-            const donationAmount = prompt("Masukkan jumlah donasi:");
-            const senderName = prompt("Masukkan nama Anda:");
-            const email = prompt("Masukkan email Anda:");
-            const message = prompt("Masukkan pesan:");
-
-            if (donationAmount && senderName && email && message) {
-                try {
-                    const saweriaUsername = 'username_saweria'; // Ganti dengan username Saweria yang sesuai
-                    const userId = '016d0bd0-7977-4de2-9176-333fa88e7326'; // Ganti dengan user ID yang sesuai
-
-                    const payload = {
-                        agree: true,
-                        notUnderage: true,
-                        message: message,
-                        amount: parseInt(donationAmount),
-                        payment_type: "qris",
-                        vote: "",
-                        currency: "IDR",
-                        customer_info: {
-                            first_name: senderName,
-                            email: `${senderName}+${email}`,
-                            phone: ""
-                        }
-                    };
-
-                    const postResponse = await axios.post('/api/saweria', {
-                        userId: userId,
-                        payload: payload
-                    });
-
-                    const donationResultDiv = document.getElementById('donation-result');
-                    donationResultDiv.innerHTML = `QR Code: <br><img src="${postResponse.data.qr_string}" alt="QR Code" style="width: 200px;"><br>Payment ID: ${postResponse.data.id}`;
-                } catch (error) {
-                    alert('Kesalahan saat mengirim permintaan: ' + error.message);
-                    const donationResultDiv = document.getElementById('donation-result');
-                    donationResultDiv.innerHTML = 'Terjadi kesalahan: ' + error.message;
-                }
-            }
-        });
-    </script>
-</body>
-    </html>
