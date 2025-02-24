@@ -14,7 +14,7 @@
     "vercel": "^41.1.4"
   },
   "engines": {
-    "node": "22.x"
+    "node": "23.x"
   },
   "author": "SendiAp",
   "license": "MIT",
